@@ -12,7 +12,6 @@ Begin VB.Form F_LogIn
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   Moveable        =   0   'False
    ScaleHeight     =   3570
    ScaleWidth      =   6765
    StartUpPosition =   2  'CenterScreen
@@ -180,6 +179,7 @@ Attribute VB_Exposed = False
 
 Private Sub cmdForgetPassword_Click()
     F_ForgetPassword.Show
+    Unload Me
 End Sub
 Private Function pfblnNotInput() As Boolean
   
