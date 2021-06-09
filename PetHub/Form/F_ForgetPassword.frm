@@ -12,7 +12,6 @@ Begin VB.Form F_ForgetPassword
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   Moveable        =   0   'False
    ScaleHeight     =   5415
    ScaleWidth      =   6765
    StartUpPosition =   2  'CenterScreen
@@ -54,7 +53,7 @@ Begin VB.Form F_ForgetPassword
       Left            =   382
       TabIndex        =   0
       Text            =   "Username"
-      Top             =   315
+      Top             =   540
       Width           =   5985
    End
    Begin VB.TextBox txtAnswer2 
@@ -174,6 +173,13 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim blnSetNewPassword As Boolean
+
+
+Private Sub Form_Unload(Cancel As Integer)
+    F_LogIn.Show
+
+End Sub
+
 Private Sub cmdNext_Click()
     If pfblnNotInput Then Exit Sub
     If Me.txtNewPassword.Visible Then
