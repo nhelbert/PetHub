@@ -16,11 +16,11 @@ Begin VB.Form F_LogIn
    ScaleHeight     =   3570
    ScaleWidth      =   6765
    StartUpPosition =   2  'CenterScreen
-   Begin OsenXPCntrl.OsenXPButton OsenXPButton1 
+   Begin OsenXPCntrl.OsenXPButton cmdLogIn 
       Height          =   600
       Left            =   4560
       TabIndex        =   2
-      Top             =   2715
+      Top             =   2700
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   1058
@@ -137,6 +137,14 @@ Begin VB.Form F_LogIn
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin VB.Image Image1 
+      Height          =   1005
+      Left            =   315
+      Picture         =   "F_LogIn.frx":1C3A
+      Stretch         =   -1  'True
+      Top             =   1290
+      Width           =   900
+   End
    Begin VB.Label lblTitle 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
@@ -172,6 +180,25 @@ Attribute VB_Exposed = False
 
 Private Sub cmdForgetPassword_Click()
     F_ForgetPassword.Show
+End Sub
+Private Function pfblnNotInput() As Boolean
+  
+         If txtUserName.ForeColor = vbButtonShadow Or txtUserName.Text = "" Then
+            txtUserName.SetFocus
+            pfblnNotInput = True
+        ElseIf txtPassword.ForeColor = vbButtonShadow Or txtPassword.Text = "" Then
+            txtPassword.SetFocus
+            pfblnNotInput = True
+        End If
+   
+
+End Function
+
+Private Sub cmdLogIn_Click()
+    If pfblnNotInput Then Exit Sub
+    
+    F_MainMenu.Show
+    Unload Me
 End Sub
 
 Private Sub txtPassword_GotFocus()

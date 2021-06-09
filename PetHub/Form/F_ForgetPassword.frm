@@ -133,7 +133,7 @@ Begin VB.Form F_ForgetPassword
       Height          =   600
       Left            =   2385
       TabIndex        =   5
-      Top             =   4470
+      Top             =   4455
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   1058
