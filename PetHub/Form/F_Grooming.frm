@@ -271,7 +271,27 @@ Private Sub psubClear()
        txtPrice.Text = ""
        txtDescription.SetFocus
        intID = 0
+       cmdSave.Caption = "&Save"
       cmdAddNew.Enabled = False
+End Sub
+
+Private Sub cmdDelete_Click()
+If intID = 0 Then
+  Call psubClear
+Else
+     If MsgBox("Are you sure you want to delete this grooming ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+        
+        strSQL = ""
+        strSQL = strSQL & " delete from grooming"
+        strSQL = strSQL & " Where groomid=" & intID
+        
+        clsConnect.DBConnect.Execute (strSQL)
+        MsgBox "Grooming deleted successfully.", vbInformation, SystemTitle
+        Call psubClear
+        Call psubGetData
+     
+    End If
+  End If
 End Sub
 
 Private Sub cmdSave_Click()
@@ -297,7 +317,7 @@ Private Sub cmdSave_Click()
             strSQL = strSQL & " Update grooming"
             strSQL = strSQL & " SET Description=" & pfstrQuote(txtDescription.Text)
             strSQL = strSQL & " , Price=" & txtPrice.Text
-            strSQL = strSQL & " where Id=" & intID
+            strSQL = strSQL & " where groomId=" & intID
             
             clsConnect.DBConnect.Execute (strSQL)
             MsgBox "Grooming update successfully.", vbInformation, SystemTitle
@@ -344,9 +364,9 @@ Private Sub psubLoadFlexGrid(objData As Object)
         Do While Not objData.EOF
         
                 .Rows = .Rows + 1
-                .TextMatrix(.Rows - 1, 0) = iif(isnull(objData.Fields(0).Value), "", objData.Fields(0).Value)
-                .TextMatrix(.Rows - 1, 1) = iif(isnull(objData.Fields(1).Value), "", objData.Fields(1).Value)
-                .TextMatrix(.Rows - 1, 2) = iif(isnull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+                .TextMatrix(.Rows - 1, 0) = IIf(IsNull(objData.Fields(0).Value), "", objData.Fields(0).Value)
+                .TextMatrix(.Rows - 1, 1) = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
+                .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
               
            
             objData.MoveNext
@@ -368,9 +388,9 @@ Dim objData As Object
         Set objData = clsConnect.GetRecordSet(strSQL)
     
         If Not objData.EOF Then
-            intID = iif(isnull(objData.Fields(0).Value), "", objData.Fields(0).Value)
-            txtDescription.Text = iif(isnull(objData.Fields(1).Value), "", objData.Fields(1).Value)
-            txtPrice.Text = iif(isnull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+            intID = IIf(IsNull(objData.Fields(0).Value), "", objData.Fields(0).Value)
+            txtDescription.Text = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
+            txtPrice.Text = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
         End If
         cmdAddNew.Enabled = True
         cmdSave.Caption = "&Update"
@@ -381,14 +401,14 @@ Private Sub txtSearch_Change()
   Call psubGetData
 End Sub
 Private Sub psubGetData()
-    Dim objGrooming As Object
+    Dim objData As Object
     strSQL = ""
     strSQL = strSQL & "SELECT * from grooming"
     If txtSearch.Text <> "" Then
     strSQL = strSQL & " Where Description like '%" & txtSearch.Text & "%'"
     End If
     
-  Set objUserActivity = clsConnect.GetRecordSet(strSQL)
-  Call psubLoadFlexGrid(objGrooming)
+  Set objData = clsConnect.GetRecordSet(strSQL)
+  Call psubLoadFlexGrid(objData)
 End Sub
 

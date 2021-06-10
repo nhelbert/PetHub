@@ -366,7 +366,7 @@ Private Sub psubLoadFlexGrid(objData As Object)
                 .Row = 0
                 .Col = a
                 .ColAlignment(a) = flexAlignCenterCenter
-                .ColWidth(a) = Choose(a + 1, 1000, 2000, 1500, 1500, 1000, 1000, 1000, 1000, 1000, 1500, 2000, 1500)
+                .ColWidth(a) = Choose(a + 1, 2000, 2000, 1500, 1500, 1000, 1000, 1000, 1000, 1000, 1500, 2000, 1500)
                 .RowHeight(0) = 400
                 '.CellFontBold = True
       Next a
@@ -390,6 +390,11 @@ Private Sub psubLoadFlexGrid(objData As Object)
 
 End Sub
 
+
+Private Sub cboStatus_Click()
+    Call psubGetData
+End Sub
+
 Private Sub Form_Load()
 Dim objData As Object
     strSQL = ""
@@ -397,6 +402,33 @@ Dim objData As Object
     
   Set objData = clsConnect.GetRecordSet(strSQL)
     If Not objData.EOF Then
+  Call psubLoadFlexGrid(objData)
+  
+  cboStatus.AddItem "All"
+  cboStatus.AddItem "Expired"
+  cboStatus.AddItem "On Stock"
+  cboStatus.AddItem "Low Stock"
+  cboStatus.AddItem "Over Stock"
+  cboStatus.ListIndex = 0
+  End If
+End Sub
+
+Private Sub txtSearch_Change()
+Call psubGetData
+End Sub
+Private Sub psubGetData()
+    Dim objData As Object
+    strSQL = ""
+    strSQL = strSQL & "SELECT * FROM stocks"
+     strSQL = strSQL & " Where itemid like '%" & txtSearch.Text & "%'"
+    If txtSearch.Text <> "" Then
+            strSQL = strSQL & " and name like '%" & txtSearch.Text & "%'"
+    End If
+    If txtSearch.Text <> "" Then
+            strSQL = strSQL & " Where name like '%" & txtSearch.Text & "%'"
+    End If
+  Set objData = clsConnect.GetRecordSet(strSQL)
+  If Not objData.EOF Then
   Call psubLoadFlexGrid(objData)
   End If
 End Sub
