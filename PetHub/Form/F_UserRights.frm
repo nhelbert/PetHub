@@ -165,6 +165,7 @@ Begin VB.Form F_UserRights
       FixedCols       =   0
       HighLight       =   2
       SelectionMode   =   1
+      AllowUserResizing=   1
    End
    Begin OsenXPCntrl.OsenXPButton cmdAddUser 
       Height          =   495
@@ -492,7 +493,7 @@ Begin VB.Form F_UserRights
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "SEARCH :"
+      Caption         =   "Search :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -535,7 +536,7 @@ End Sub
 
 Private Sub cmdAdd_Click()
     If pfblnNotInput Then Exit Sub
-    If MsgBox("Are you sure you want to update this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+    If MsgBox("Are you sure you want to add this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         
         strSQL = ""
@@ -543,7 +544,7 @@ Private Sub cmdAdd_Click()
         strSQL = strSQL & " (employeeCode,fullName,rights,password,fristQ,secondQ,thirdQ,firstAns,secondAns,thirdAns)"
         strSQL = strSQL & " values (" & pfstrQuote(txtUserName.Text)
         strSQL = strSQL & "     ," & pfstrQuote(txtName.Text)
-        strSQL = strSQL & "     ," & IIf(cboAccessType.Text = "ADMIN", 0, 1)
+        strSQL = strSQL & "     ," & iif(cboAccessType.Text = "ADMIN", 0, 1)
         strSQL = strSQL & "     ," & pfstrQuote(txtPassword.Text)
         strSQL = strSQL & "     ," & pfGetQuestionID(cboQuestion1.Text)
         strSQL = strSQL & "     ," & pfGetQuestionID(cboQuestion2.Text)
@@ -603,14 +604,14 @@ End Sub
 Private Sub cmdUpdate_Click()
     If pfblnNotInput Then Exit Sub
     
-    If MsgBox("Are you sure you want to add this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+    If MsgBox("Are you sure you want to update this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         
         strSQL = ""
         strSQL = strSQL & " Update users"
         strSQL = strSQL & " Set employeeCode=" & pfstrQuote(txtUserName.Text)
         strSQL = strSQL & "     ,fullName=" & pfstrQuote(txtName.Text)
-        strSQL = strSQL & "     ,rights=" & IIf(cboAccessType.Text = "ADMIN", 0, 1)
+        strSQL = strSQL & "     ,rights=" & iif(cboAccessType.Text = "ADMIN", 0, 1)
         strSQL = strSQL & "     ,password=" & pfstrQuote(txtPassword.Text)
         strSQL = strSQL & "     ,fristQ=" & pfGetQuestionID(cboQuestion1.Text)
         strSQL = strSQL & "     ,secondQ=" & pfGetQuestionID(cboQuestion2.Text)
@@ -675,12 +676,12 @@ Private Sub psubLoadFlexGrid(objData As Object)
         Do While Not objData.EOF
         
                 .Rows = .Rows + 1
-                .TextMatrix(.Rows - 1, 0) = IIf(IsNull(objData.Fields(0).Value), "", objData.Fields(0).Value)
-                .TextMatrix(.Rows - 1, 1) = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
-                .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(4).Value), "", Choose(objData.Fields(4).Value + 1, "ADMIN", "USER"))
-                .TextMatrix(.Rows - 1, 3) = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
-                .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(6).Value), "", objData.Fields(6).Value)
-                .TextMatrix(.Rows - 1, 5) = IIf(IsNull(objData.Fields(13).Value), "", objData.Fields(13).Value)
+                .TextMatrix(.Rows - 1, 0) = iif(isnull(objData.Fields(0).Value), "", objData.Fields(0).Value)
+                .TextMatrix(.Rows - 1, 1) = iif(isnull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+                .TextMatrix(.Rows - 1, 2) = iif(isnull(objData.Fields(4).Value), "", objData.Fields(4).Value)
+                .TextMatrix(.Rows - 1, 3) = iif(isnull(objData.Fields(1).Value), "", objData.Fields(1).Value)
+                .TextMatrix(.Rows - 1, 4) = iif(isnull(objData.Fields(6).Value), "", objData.Fields(6).Value)
+                .TextMatrix(.Rows - 1, 5) = iif(isnull(objData.Fields(13).Value), "", objData.Fields(13).Value)
               
            
             objData.MoveNext
@@ -692,7 +693,7 @@ Private Sub psubLoadFlexGrid(objData As Object)
 End Sub
 
 Private Sub MSFlexGrid1_DblClick()
- Dim objUsers As Object
+ Dim objData As Object
 
 
 If MSFlexGrid1.Row <> 0 Then
@@ -701,23 +702,23 @@ If MSFlexGrid1.Row <> 0 Then
     strSQL = ""
     strSQL = strSQL & "SELECT * FROM users"
     strSQL = strSQL & " Where id = " & MSFlexGrid1.TextMatrix(MSFlexGrid1.Row, 0)
-    Set objUsers = clsConnect.GetRecordSet(strSQL)
+    Set objData = clsConnect.GetRecordSet(strSQL)
 
-    If Not objUsers.EOF Then
-        txtName.Text = IIf(IsNull(objUsers.Fields(2).Value), "", objUsers.Fields(2).Value)
-        cboAccessType.Text = IIf(IsNull(objUsers.Fields(4).Value), "", Choose(objUsers.Fields(4).Value + 1, "ADMIN", "USER"))
-        cboQuestion1.Text = pfGetQuestionName(IIf(IsNull(objUsers.Fields(7).Value), 0, objUsers.Fields(7).Value))
-        cboQuestion2.Text = pfGetQuestionName(IIf(IsNull(objUsers.Fields(8).Value), 0, objUsers.Fields(8).Value))
-        cboQuestion3.Text = pfGetQuestionName(IIf(IsNull(objUsers.Fields(9).Value), 0, objUsers.Fields(9).Value))
-        txtUserName.Text = IIf(IsNull(objUsers.Fields(1).Value), "", objUsers.Fields(1).Value)
-        txtPassword.Text = IIf(IsNull(objUsers.Fields(6).Value), "", objUsers.Fields(6).Value)
-        strAns1 = IIf(IsNull(objUsers.Fields(10).Value), "", objUsers.Fields(10).Value)
-        strAns2 = IIf(IsNull(objUsers.Fields(11).Value), "", objUsers.Fields(11).Value)
-        strAns3 = IIf(IsNull(objUsers.Fields(12).Value), "", objUsers.Fields(12).Value)
-        intID = IIf(IsNull(objUsers.Fields(0).Value), "", objUsers.Fields(0).Value)
+    If Not objData.EOF Then
+        txtName.Text = iif(isnull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+        cboAccessType.Text = iif(isnull(objData.Fields(4).Value), "", Choose(objData.Fields(4).Value + 1, "ADMIN", "USER"))
+        cboQuestion1.Text = pfGetQuestionName(iif(isnull(objData.Fields(7).Value), "", objData.Fields(7).Value))
+        cboQuestion2.Text = pfGetQuestionName(iif(isnull(objData.Fields(8).Value), "", objData.Fields(8).Value))
+        cboQuestion3.Text = pfGetQuestionName(iif(isnull(objData.Fields(9).Value), "", objData.Fields(9).Value))
+        txtUserName.Text = iif(isnull(objData.Fields(1).Value), "", objData.Fields(1).Value)
+        txtPassword.Text = iif(isnull(objData.Fields(6).Value), "", objData.Fields(6).Value)
+        strAns1 = iif(isnull(objData.Fields(10).Value), "", objData.Fields(10).Value)
+        strAns2 = iif(isnull(objData.Fields(11).Value), "", objData.Fields(11).Value)
+        strAns3 = iif(isnull(objData.Fields(12).Value), "", objData.Fields(12).Value)
+        intID = iif(isnull(objData.Fields(0).Value), "", objData.Fields(0).Value)
     End If
 
-     cmdUpdate.Enabled = True
+    cmdUpdate.Enabled = True
     cmdAdd.Enabled = False
 
 End If
@@ -779,12 +780,14 @@ Private Sub txtSearch_Change()
 Call psubGetUsers
 End Sub
 Private Sub psubGetUsers()
-    Dim objUsers As Object
+    Dim objData As Object
     strSQL = ""
     strSQL = strSQL & "SELECT * FROM users"
     If txtSearch.Text <> "" Then
             strSQL = strSQL & " Where fullName like '%" & txtSearch.Text & "%'"
     End If
-  Set objUsers = clsConnect.GetRecordSet(strSQL)
-  Call psubLoadFlexGrid(objUsers)
+  Set objData = clsConnect.GetRecordSet(strSQL)
+  If Not objData.EOF Then
+  Call psubLoadFlexGrid(objData)
+  End If
 End Sub

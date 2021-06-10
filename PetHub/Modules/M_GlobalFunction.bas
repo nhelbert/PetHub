@@ -8,3 +8,33 @@ Public Function pfstrQuote(ByVal strNoQuote As String) As String
      
      pfstrQuote = "'" & strTemp & "'"
 End Function
+
+Public Sub psubUpdateActivityLogs(intID As Integer, blnLogIn As Boolean)
+Dim objUserExist As Object
+        strSQL = ""
+        strSQL = strSQL & " SELECT * FROM useractivity"
+        strSQL = strSQL & " WHERE id=" & intID
+        
+        Set objUserExist = clsConnect.GetRecordSet(strSQL)
+        
+        If objUserExist.EOF Then
+            strSQL = ""
+            strSQL = strSQL & " INSERT INTO useractivity (ID) values(" & intID & ")"
+    
+        Else
+           strSQL = ""
+            strSQL = strSQL & " UPDATE  useractivity set "
+            If blnLogIn Then
+              strSQL = strSQL & " LoginDate = now(),LogoutDate=null "
+            Else
+              strSQL = strSQL & " LogoutDate = now() "
+            End If
+            strSQL = strSQL & " WHERE ID=" & intID
+            
+        End If
+   
+        clsConnect.DBConnect.Execute (strSQL)
+        
+        
+        
+End Sub

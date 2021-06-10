@@ -16,10 +16,10 @@ Begin VB.Form F_LogIn
    ScaleWidth      =   6765
    StartUpPosition =   2  'CenterScreen
    Begin OsenXPCntrl.OsenXPButton cmdLogIn 
-      Height          =   500
+      Height          =   495
       Left            =   4560
       TabIndex        =   2
-      Top             =   2700
+      Top             =   2655
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   873
@@ -200,15 +200,21 @@ Dim objUsers As Object
     
     Set objUsers = clsConnect.GetRecordSet(strSQL)
     If Not objUsers.EOF Then
+    Set objUserData = objUsers
+        Call psubUpdateActivityLogs(objUsers.Fields(0).Value, True)
         F_MainMenu.Show
-        MsgBox "Welcome " & objUsers.Fields("fullName"), vbInformation, SystemTitle
+        MsgBox "Welcome " & objUsers.Fields("fullName") & " .", vbInformation, SystemTitle
         Unload Me
     Else
      MsgBox "Account not register !", vbCritical, SystemTitle
-    
     End If
     
 
+End Sub
+
+
+Private Sub Form_Load()
+    lblTitle.Caption = SystemTitle
 End Sub
 
 Private Sub txtPassword_GotFocus()

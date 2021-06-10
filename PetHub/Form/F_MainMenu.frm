@@ -23,11 +23,11 @@ Begin VB.Form F_MainMenu
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
-      BTYPE           =   4
-      TX              =   "Login"
+      BTYPE           =   2
+      TX              =   ""
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Verdana"
+         Name            =   "MS Sans Serif"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -37,14 +37,13 @@ Begin VB.Form F_MainMenu
       EndProperty
       COLTYPE         =   1
       FOCUSR          =   -1  'True
-      BCOL            =   16777215
-      BCOLO           =   16777215
+      BCOL            =   15790320
+      BCOLO           =   15790320
       FCOL            =   0
-      FCOLO           =   16711680
+      FCOLO           =   0
       MCOL            =   12632256
       MPTR            =   0
       MICON           =   "F_MainMenu.frx":10CA
-      PICN            =   "F_MainMenu.frx":10E6
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -63,11 +62,11 @@ Begin VB.Form F_MainMenu
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
-      BTYPE           =   4
-      TX              =   "Login"
+      BTYPE           =   2
+      TX              =   ""
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Verdana"
+         Name            =   "MS Sans Serif"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -77,14 +76,13 @@ Begin VB.Form F_MainMenu
       EndProperty
       COLTYPE         =   1
       FOCUSR          =   -1  'True
-      BCOL            =   16777215
-      BCOLO           =   16777215
+      BCOL            =   15790320
+      BCOLO           =   15790320
       FCOL            =   0
-      FCOLO           =   16711680
+      FCOLO           =   0
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_MainMenu.frx":1682
-      PICN            =   "F_MainMenu.frx":169E
+      MICON           =   "F_MainMenu.frx":10E6
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -103,11 +101,11 @@ Begin VB.Form F_MainMenu
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
-      BTYPE           =   4
-      TX              =   "Login"
+      BTYPE           =   2
+      TX              =   ""
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Verdana"
+         Name            =   "MS Sans Serif"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -117,14 +115,13 @@ Begin VB.Form F_MainMenu
       EndProperty
       COLTYPE         =   1
       FOCUSR          =   -1  'True
-      BCOL            =   16777215
-      BCOLO           =   16777215
+      BCOL            =   15790320
+      BCOLO           =   15790320
       FCOL            =   0
-      FCOLO           =   16711680
+      FCOLO           =   0
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_MainMenu.frx":1C3A
-      PICN            =   "F_MainMenu.frx":1C56
+      MICON           =   "F_MainMenu.frx":1102
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -143,11 +140,11 @@ Begin VB.Form F_MainMenu
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
-      BTYPE           =   4
-      TX              =   "Login"
+      BTYPE           =   2
+      TX              =   ""
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Verdana"
+         Name            =   "MS Sans Serif"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -157,14 +154,13 @@ Begin VB.Form F_MainMenu
       EndProperty
       COLTYPE         =   1
       FOCUSR          =   -1  'True
-      BCOL            =   16777215
-      BCOLO           =   16777215
+      BCOL            =   15790320
+      BCOLO           =   15790320
       FCOL            =   0
-      FCOLO           =   16711680
+      FCOLO           =   0
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_MainMenu.frx":21F2
-      PICN            =   "F_MainMenu.frx":220E
+      MICON           =   "F_MainMenu.frx":111E
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -177,17 +173,17 @@ Begin VB.Form F_MainMenu
    Begin OsenXPCntrl.OsenXPButton cmdMain 
       Height          =   2505
       Index           =   4
-      Left            =   5490
+      Left            =   5445
       TabIndex        =   4
       Top             =   3900
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
-      BTYPE           =   4
-      TX              =   "Login"
+      BTYPE           =   2
+      TX              =   ""
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Verdana"
+         Name            =   "MS Sans Serif"
          Size            =   8.25
          Charset         =   0
          Weight          =   400
@@ -197,14 +193,13 @@ Begin VB.Form F_MainMenu
       EndProperty
       COLTYPE         =   1
       FOCUSR          =   -1  'True
-      BCOL            =   16777215
-      BCOLO           =   16777215
+      BCOL            =   15790320
+      BCOLO           =   15790320
       FCOL            =   0
-      FCOLO           =   16711680
+      FCOLO           =   0
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_MainMenu.frx":27AA
-      PICN            =   "F_MainMenu.frx":27C6
+      MICON           =   "F_MainMenu.frx":113A
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -228,7 +223,9 @@ Private Sub cmdMain_Click(Index As Integer)
         F_Grooming.Show vbModal
     Case 1
     Case 2
+        F_StockManagement.Show vbModal
     Case 3
+        
     Case 4
         F_UserRights.Show vbModal
     End Select
@@ -236,6 +233,7 @@ End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
   If MsgBox("Are you sure you want to Logout ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+  Call psubUpdateActivityLogs(objUserData.Fields(0).Value, False)
     F_LogIn.Show
   Else
     Cancel = 1

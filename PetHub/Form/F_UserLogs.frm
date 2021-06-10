@@ -43,11 +43,12 @@ Begin VB.Form F_UserLogs
       _Version        =   393216
       Cols            =   3
       FixedCols       =   0
+      AllowUserResizing=   1
    End
    Begin VB.Label Label2 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "SEARCH :"
+      Caption         =   "Search :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -70,12 +71,14 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Form_Load()
-Dim objUserActivity As Object
+Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT * FROM useractivity"
+    strSQL = strSQL & "SELECT a.*,b.fullname FROM useractivity a inner join users b on a.id=b.id"
     
-  Set objUserActivity = clsConnect.GetRecordSet(strSQL)
-  Call psubLoadFlexGrid(objUserActivity)
+  Set objData = clsConnect.GetRecordSet(strSQL)
+    If Not objData.EOF Then
+  Call psubLoadFlexGrid(objData)
+  End If
 End Sub
 
 
@@ -96,9 +99,9 @@ Private Sub psubLoadFlexGrid(objData As Object)
         Do While Not objData.EOF
         
                 .Rows = .Rows + 1
-                .TextMatrix(.Rows - 1, 0) = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
-                .TextMatrix(.Rows - 1, 1) = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
-                .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(3).Value), "", objData.Fields(3).Value)
+                .TextMatrix(.Rows - 1, 0) = iif(isnull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+                .TextMatrix(.Rows - 1, 1) = iif(isnull(objData.Fields(1).Value), "", objData.Fields(1).Value)
+                .TextMatrix(.Rows - 1, 2) = iif(isnull(objData.Fields(3).Value), "", objData.Fields(3).Value)
               
            
             objData.MoveNext
@@ -110,10 +113,10 @@ Private Sub psubLoadFlexGrid(objData As Object)
 End Sub
 
 Private Sub txtSearch_Change()
-    Dim objUserActivity As Object
+    Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT * FROM useractivity"
-    strSQL = strSQL & " Where user like '%" & txtSearch.Text & "%'"
-  Set objUserActivity = clsConnect.GetRecordSet(strSQL)
-  Call psubLoadFlexGrid(objUserActivity)
+    strSQL = strSQL & "SELECT a.*,b.fullname FROM useractivity a inner join users b on a.id=b.id"
+    strSQL = strSQL & " Where b.fullname like '%" & txtSearch.Text & "%'"
+  Set objData = clsConnect.GetRecordSet(strSQL)
+  Call psubLoadFlexGrid(objData)
 End Sub
