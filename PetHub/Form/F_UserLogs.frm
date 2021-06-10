@@ -76,9 +76,9 @@ Dim objData As Object
     strSQL = strSQL & "SELECT a.*,b.fullname FROM useractivity a inner join users b on a.id=b.id"
     
   Set objData = clsConnect.GetRecordSet(strSQL)
-    If Not objData.EOF Then
+  
   Call psubLoadFlexGrid(objData)
-  End If
+
 End Sub
 
 
@@ -99,9 +99,9 @@ Private Sub psubLoadFlexGrid(objData As Object)
         Do While Not objData.EOF
         
                 .Rows = .Rows + 1
-                .TextMatrix(.Rows - 1, 0) = iif(isnull(objData.Fields(2).Value), "", objData.Fields(2).Value)
-                .TextMatrix(.Rows - 1, 1) = iif(isnull(objData.Fields(1).Value), "", objData.Fields(1).Value)
-                .TextMatrix(.Rows - 1, 2) = iif(isnull(objData.Fields(3).Value), "", objData.Fields(3).Value)
+                .TextMatrix(.Rows - 1, 0) = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+                .TextMatrix(.Rows - 1, 1) = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
+                .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(3).Value), "", objData.Fields(3).Value)
               
            
             objData.MoveNext

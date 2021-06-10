@@ -401,7 +401,7 @@ Dim objData As Object
     strSQL = strSQL & "SELECT * FROM stocks"
     
   Set objData = clsConnect.GetRecordSet(strSQL)
-    If Not objData.EOF Then
+
   Call psubLoadFlexGrid(objData)
   
   cboStatus.AddItem "All"
@@ -410,7 +410,7 @@ Dim objData As Object
   cboStatus.AddItem "Low Stock"
   cboStatus.AddItem "Over Stock"
   cboStatus.ListIndex = 0
-  End If
+
 End Sub
 
 Private Sub txtSearch_Change()
@@ -420,16 +420,23 @@ Private Sub psubGetData()
     Dim objData As Object
     strSQL = ""
     strSQL = strSQL & "SELECT * FROM stocks"
-     strSQL = strSQL & " Where itemid like '%" & txtSearch.Text & "%'"
+     strSQL = strSQL & " Where itemid is not null"
     If txtSearch.Text <> "" Then
             strSQL = strSQL & " and name like '%" & txtSearch.Text & "%'"
     End If
-    If txtSearch.Text <> "" Then
-            strSQL = strSQL & " Where name like '%" & txtSearch.Text & "%'"
-    End If
+    Select Case cboStatus.Text
+    Case "Expired"
+        strSQL = strSQL & " and ExDate <= now()"
+    Case "On Stock"
+        strSQL = strSQL & " and qty > min and qty <=max and  ExDate > DATE_FORMAT(now(), '%Y-%m-%d')"
+    Case "Low Stock"
+        strSQL = strSQL & " and qty <= min"
+     Case "Over Stock"
+        strSQL = strSQL & " and qty > max"
+    End Select
   Set objData = clsConnect.GetRecordSet(strSQL)
-  If Not objData.EOF Then
+
   Call psubLoadFlexGrid(objData)
-  End If
+
 End Sub
 
