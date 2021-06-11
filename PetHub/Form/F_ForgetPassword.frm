@@ -4,17 +4,17 @@ Begin VB.Form F_ForgetPassword
    AutoRedraw      =   -1  'True
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Forgot Password"
-   ClientHeight    =   5415
+   ClientHeight    =   4935
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   6765
+   ClientWidth     =   5910
    Icon            =   "F_ForgetPassword.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5415
-   ScaleWidth      =   6765
-   StartUpPosition =   2  'CenterScreen
+   ScaleHeight     =   4935
+   ScaleWidth      =   5910
+   StartUpPosition =   1  'CenterOwner
    Begin VB.ComboBox cboQuestion1 
       Appearance      =   0  'Flat
       BeginProperty Font 
@@ -27,10 +27,10 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   412
+      Left            =   150
       TabIndex        =   7
       Top             =   1095
-      Width           =   5985
+      Width           =   5650
    End
    Begin VB.ComboBox cboQuestion2 
       Appearance      =   0  'Flat
@@ -44,10 +44,10 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   412
+      Left            =   150
       TabIndex        =   6
       Top             =   2415
-      Width           =   5985
+      Width           =   5650
    End
    Begin VB.TextBox txtAnswer1 
       Appearance      =   0  'Flat
@@ -61,11 +61,11 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   650
-      Left            =   2670
+      Left            =   2438
       MultiLine       =   -1  'True
       TabIndex        =   5
       Top             =   1530
-      Width           =   3645
+      Width           =   3330
    End
    Begin VB.TextBox txtAnswer2 
       Appearance      =   0  'Flat
@@ -79,13 +79,14 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   650
-      Left            =   2670
+      Left            =   2438
       MultiLine       =   -1  'True
       TabIndex        =   4
       Top             =   2835
-      Width           =   3645
+      Width           =   3330
    End
    Begin VB.TextBox txtNewPassword 
+      Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -97,11 +98,11 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   3465
+      Left            =   2438
       TabIndex        =   3
-      Top             =   3915
+      Top             =   3735
       Visible         =   0   'False
-      Width           =   2880
+      Width           =   3330
    End
    Begin VB.TextBox txtUserName 
       Alignment       =   2  'Center
@@ -116,16 +117,16 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   2707
+      Left            =   2438
       TabIndex        =   1
       Top             =   360
-      Width           =   3645
+      Width           =   3330
    End
    Begin OsenXPCntrl.OsenXPButton cmdNext 
       Height          =   495
-      Left            =   4365
+      Left            =   3780
       TabIndex        =   0
-      Top             =   4455
+      Top             =   4320
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   873
@@ -162,7 +163,7 @@ Begin VB.Form F_ForgetPassword
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "ANSWER 1 :"
+      Caption         =   "Answer 1 :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -173,7 +174,7 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   345
-      Left            =   405
+      Left            =   150
       TabIndex        =   10
       Top             =   1530
       Width           =   2265
@@ -181,7 +182,7 @@ Begin VB.Form F_ForgetPassword
    Begin VB.Label Label2 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "ANSWER 2 :"
+      Caption         =   "Answer 2 :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -192,7 +193,7 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   345
-      Left            =   405
+      Left            =   150
       TabIndex        =   9
       Top             =   2835
       Width           =   2265
@@ -200,7 +201,7 @@ Begin VB.Form F_ForgetPassword
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "NEW PASSWORD :"
+      Caption         =   "New Password :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -211,16 +212,16 @@ Begin VB.Form F_ForgetPassword
          Strikethrough   =   0   'False
       EndProperty
       Height          =   345
-      Left            =   405
+      Left            =   150
       TabIndex        =   8
-      Top             =   3915
+      Top             =   3735
       Visible         =   0   'False
-      Width           =   3030
+      Width           =   2265
    End
    Begin VB.Label Label4 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "USERNAME :"
+      Caption         =   "Username :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -230,8 +231,8 @@ Begin VB.Form F_ForgetPassword
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   350
-      Left            =   412
+      Height          =   345
+      Left            =   150
       TabIndex        =   2
       Top             =   360
       Width           =   2265
@@ -244,6 +245,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim blnSetNewPassword As Boolean
 Dim objUserQuestions As Object
+Dim objUserExist As Object
 
 
 Private Sub Form_Load()
@@ -268,26 +270,107 @@ Private Sub Form_Unload(Cancel As Integer)
     F_LogIn.Show
 
 End Sub
+Private Function pfGetQuestionName(intID As Integer) As String
+ With objUserQuestions
+    .MoveFirst
+    Do While Not .EOF
+    If intID = .Fields(0).Value Then
+        pfGetQuestionName = .Fields(1).Value
+    End If
+    .MoveNext
+    Loop
+ End With
+End Function
+Private Function pfGetQuestionID(strValue As String) As Integer
+ With objUserQuestions
+    .MoveFirst
+    Do While Not .EOF
+    If strValue = .Fields(1).Value Then
+        pfGetQuestionID = .Fields(0).Value
+    End If
+    .MoveNext
+    Loop
+ End With
+End Function
 
 Private Sub cmdNext_Click()
-Dim objUserExist As Object
+Dim blnOK As Boolean
     If pfblnNotInput Then Exit Sub
-    If Me.txtNewPassword.Visible Then
+    If txtNewPassword.Visible Then
+        strSQL = ""
+        strSQL = strSQL & " Update users set password=" & pfstrQuote(txtNewPassword.Text)
+        strSQL = strSQL & " Where employeeCode=" & pfstrQuote(txtUserName.Text)
+        
+        clsConnect.DBConnect.Execute (strSQL)
+        
+        MsgBox "Password change successfully. Please login your account", vbInformation, SystemTitle
+        
         Unload Me
+       
     Else
     
-        strSQL = ""
-        strSQL = strSQL & " Select * from userswhere txtUserName ="
-    
-        Set objUserExist = clsConnect.GetRecordSet(strSQL)
-    
-        If MsgBox("Do you want to change password ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
-            txtNewPassword.Visible = True
-            Label3.Visible = True
-            txtNewPassword.SetFocus
-        Else
-            Unload Me
+
+        
+        If Not objUserExist.EOF Then
+        
+            If pfGetQuestionID(cboQuestion1.Text) = objUserExist.Fields(7).Value Then
+                        
+                If pfGetQuestionID(cboQuestion2.Text) = objUserExist.Fields(8).Value Then
+                    If txtAnswer1 = objUserExist.Fields(10).Value And txtAnswer2 = objUserExist.Fields(11).Value Then
+                        blnOK = True
+                    End If
+                 
+                ElseIf pfGetQuestionID(cboQuestion2.Text) = objUserExist.Fields(9).Value Then
+                    If txtAnswer1 = objUserExist.Fields(10).Value And txtAnswer2 = objUserExist.Fields(12).Value Then
+                        blnOK = True
+                    End If
+                End If
+            ElseIf pfGetQuestionID(cboQuestion1.Text) = objUserExist.Fields(8).Value Then
+               If pfGetQuestionID(cboQuestion2.Text) = objUserExist.Fields(7).Value Then
+                    If txtAnswer1 = objUserExist.Fields(11).Value And txtAnswer2 = objUserExist.Fields(10).Value Then
+                        blnOK = True
+                    End If
+                 
+                ElseIf pfGetQuestionID(cboQuestion2.Text) = objUserExist.Fields(9).Value Then
+                    If txtAnswer1 = objUserExist.Fields(11).Value And txtAnswer2 = objUserExist.Fields(12).Value Then
+                        blnOK = True
+                    End If
+                End If
+            
+            ElseIf pfGetQuestionID(cboQuestion1.Text) = objUserExist.Fields(9).Value Then
+                    If pfGetQuestionID(cboQuestion2.Text) = objUserExist.Fields(8).Value Then
+                    If txtAnswer1 = objUserExist.Fields(12).Value And txtAnswer2 = objUserExist.Fields(11).Value Then
+                        blnOK = True
+                    End If
+                 
+                ElseIf pfGetQuestionID(cboQuestion2.Text) = objUserExist.Fields(7).Value Then
+                    If txtAnswer1 = objUserExist.Fields(12).Value And txtAnswer2 = objUserExist.Fields(10).Value Then
+                        blnOK = True
+                    End If
+                End If
+            End If
+            
         End If
+        
+        If blnOK Then
+        
+        
+            If MsgBox("Do you want to change password ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+                txtNewPassword.Visible = True
+                Label3.Visible = True
+                txtNewPassword.SetFocus
+            Else
+            
+                Set objUserData = objUserExist
+                Unload Me
+                F_LogIn.Hide
+                F_MainMenu.Show
+          
+            End If
+        Else
+            MsgBox "Incorrect entry. Please try again", vbCritical, SystemTitle
+        End If
+      
     End If
 
 End Sub
@@ -315,5 +398,13 @@ End Function
 Private Sub txtUserName_Change()
             txtNewPassword.Visible = False
             Label3.Visible = False
-            pfblnNotInput = False
+        strSQL = ""
+        strSQL = strSQL & " Select * from users where employeecode =" & pfstrQuote(txtUserName.Text)
+    
+        Set objUserExist = clsConnect.GetRecordSet(strSQL)
+        
+        If Not objUserExist.EOF Then
+            cboQuestion1.Text = pfGetQuestionName(objUserExist(7).Value)
+            cboQuestion2.Text = pfGetQuestionName(objUserExist(8).Value)
+        End If
 End Sub

@@ -222,10 +222,11 @@ Private Sub cmdMain_Click(Index As Integer)
     Case 0
         F_Grooming.Show vbModal
     Case 1
+        F_Sales.Show vbModal
     Case 2
         F_StockManagement.Show vbModal
     Case 3
-        
+        F_Reports.Show vbModal
     Case 4
         F_UserRights.Show vbModal
     End Select

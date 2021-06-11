@@ -13,7 +13,7 @@ Begin VB.Form F_UserLogs
    MinButton       =   0   'False
    ScaleHeight     =   5565
    ScaleWidth      =   5910
-   StartUpPosition =   2  'CenterScreen
+   StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox txtSearch 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
@@ -29,7 +29,7 @@ Begin VB.Form F_UserLogs
       Height          =   360
       Left            =   2438
       TabIndex        =   1
-      Top             =   180
+      Top             =   135
       Width           =   3330
    End
    Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
@@ -61,7 +61,7 @@ Begin VB.Form F_UserLogs
       Height          =   345
       Left            =   150
       TabIndex        =   2
-      Top             =   180
+      Top             =   135
       Width           =   2265
    End
 End

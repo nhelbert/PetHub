@@ -7,14 +7,14 @@ Begin VB.Form F_UserRights
    ClientHeight    =   7560
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   13410
+   ClientWidth     =   9615
    Icon            =   "F_UserRights.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7560
-   ScaleWidth      =   13410
-   StartUpPosition =   2  'CenterScreen
+   ScaleWidth      =   9615
+   StartUpPosition =   1  'CenterOwner
    Begin VB.ComboBox cboQuestion3 
       Appearance      =   0  'Flat
       BeginProperty Font 
@@ -149,7 +149,7 @@ Begin VB.Form F_UserRights
       Height          =   360
       Left            =   2430
       TabIndex        =   0
-      Top             =   180
+      Top             =   135
       Width           =   3330
    End
    Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
@@ -169,11 +169,11 @@ Begin VB.Form F_UserRights
    End
    Begin OsenXPCntrl.OsenXPButton cmdAddUser 
       Height          =   495
-      Left            =   9420
+      Left            =   7980
       TabIndex        =   10
       Top             =   60
-      Width           =   1995
-      _ExtentX        =   3519
+      Width           =   1500
+      _ExtentX        =   2646
       _ExtentY        =   873
       BTYPE           =   4
       TX              =   "&Add User"
@@ -207,11 +207,11 @@ Begin VB.Form F_UserRights
    End
    Begin OsenXPCntrl.OsenXPButton cmdUserLogs 
       Height          =   495
-      Left            =   7290
+      Left            =   6255
       TabIndex        =   11
       Top             =   60
-      Width           =   1995
-      _ExtentX        =   3519
+      Width           =   1500
+      _ExtentX        =   2646
       _ExtentY        =   873
       BTYPE           =   4
       TX              =   "&User Logs"
@@ -357,6 +357,69 @@ Begin VB.Form F_UserRights
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin VB.Label lblMode 
+      Alignment       =   2  'Center
+      BackStyle       =   0  'Transparent
+      Caption         =   "ADD NEW USER"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Left            =   9675
+      TabIndex        =   22
+      Top             =   225
+      Width           =   3585
+   End
+   Begin VB.Shape Shape1 
+      Height          =   7305
+      Left            =   9630
+      Top             =   90
+      Width           =   3660
+   End
+   Begin VB.Label Label1 
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Name :"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Left            =   9765
+      TabIndex        =   12
+      Top             =   675
+      Width           =   750
+   End
+   Begin VB.Label Label2 
+      AutoSize        =   -1  'True
+      BackStyle       =   0  'Transparent
+      Caption         =   "Access Type :"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   240
+      Left            =   9765
+      TabIndex        =   13
+      Top             =   1395
+      Width           =   1500
+   End
    Begin VB.Label Label8 
       AutoSize        =   -1  'True
       BackStyle       =   0  'Transparent
@@ -452,44 +515,6 @@ Begin VB.Form F_UserRights
       Top             =   2835
       Width           =   1155
    End
-   Begin VB.Label Label2 
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Access Type :"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   240
-      Left            =   9765
-      TabIndex        =   13
-      Top             =   1395
-      Width           =   1500
-   End
-   Begin VB.Label Label1 
-      AutoSize        =   -1  'True
-      BackStyle       =   0  'Transparent
-      Caption         =   "Name :"
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   240
-      Left            =   9765
-      TabIndex        =   12
-      Top             =   675
-      Width           =   750
-   End
    Begin VB.Label Label3 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
@@ -506,7 +531,7 @@ Begin VB.Form F_UserRights
       Height          =   345
       Left            =   135
       TabIndex        =   9
-      Top             =   180
+      Top             =   135
       Width           =   2265
    End
 End
@@ -566,6 +591,7 @@ End Sub
 Private Sub cmdAddUser_Click()
 
 Call psubClear
+F_UserRights.Width = 13500
   
 End Sub
 Private Sub psubClear()
@@ -583,10 +609,16 @@ Private Sub psubClear()
     txtName.SetFocus
     cmdUpdate.Enabled = False
     cmdAdd.Enabled = True
+    lblMode.Caption = "ADD NEW USER"
+    F_UserRights.Width = 9705
+    cmdDelete.Caption = "&Hide"
+    
 End Sub
 
 Private Sub cmdDelete_Click()
-
+If intID = 0 Then
+    Call psubClear
+Else
      If MsgBox("Are you sure you want to delete this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         strSQL = ""
@@ -599,6 +631,7 @@ Private Sub cmdDelete_Click()
         Call psubGetUsers
      
     End If
+ End If
 End Sub
 
 Private Sub cmdUpdate_Click()
@@ -626,6 +659,7 @@ Private Sub cmdUpdate_Click()
         MsgBox "Update user successful.", vbInformation, SystemTitle
         Call psubClear
         Call psubGetUsers
+        
      
     End If
 End Sub
@@ -720,6 +754,9 @@ If MSFlexGrid1.Row <> 0 Then
 
     cmdUpdate.Enabled = True
     cmdAdd.Enabled = False
+    lblMode.Caption = "EDIT USER"
+    F_UserRights.Width = 13500
+    cmdDelete.Caption = "&Delete"
 
 End If
 

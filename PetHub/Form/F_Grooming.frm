@@ -14,7 +14,7 @@ Begin VB.Form F_Grooming
    MinButton       =   0   'False
    ScaleHeight     =   6060
    ScaleWidth      =   5910
-   StartUpPosition =   2  'CenterScreen
+   StartUpPosition =   1  'CenterOwner
    Begin VB.TextBox txtSearch 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
@@ -395,6 +395,10 @@ Dim objData As Object
         cmdAddNew.Enabled = True
         cmdSave.Caption = "&Update"
      End If
+End Sub
+
+Private Sub txtPrice_KeyPress(KeyAscii As Integer)
+      KeyAscii = pfNumberOnly(KeyAscii)
 End Sub
 
 Private Sub txtSearch_Change()

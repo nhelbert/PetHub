@@ -14,7 +14,7 @@ Begin VB.Form F_StockManagement
    MinButton       =   0   'False
    ScaleHeight     =   7560
    ScaleWidth      =   14910
-   StartUpPosition =   2  'CenterScreen
+   StartUpPosition =   1  'CenterOwner
    Begin VB.ComboBox cboStatus 
       Appearance      =   0  'Flat
       BeginProperty Font 
@@ -142,7 +142,7 @@ Begin VB.Form F_StockManagement
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
-   Begin VB.Label Label11 
+   Begin VB.Label lblLowStock 
       Alignment       =   2  'Center
       BackColor       =   &H000040C0&
       BorderStyle     =   1  'Fixed Single
@@ -180,7 +180,7 @@ Begin VB.Form F_StockManagement
       Top             =   6930
       Width           =   1500
    End
-   Begin VB.Label Label9 
+   Begin VB.Label lblOverStock 
       Alignment       =   2  'Center
       BackColor       =   &H00FFFF00&
       BorderStyle     =   1  'Fixed Single
@@ -237,7 +237,7 @@ Begin VB.Form F_StockManagement
       Top             =   6930
       Width           =   1500
    End
-   Begin VB.Label Label6 
+   Begin VB.Label lblOnStock 
       Alignment       =   2  'Center
       BackColor       =   &H00FFFFFF&
       BorderStyle     =   1  'Fixed Single
@@ -275,7 +275,7 @@ Begin VB.Form F_StockManagement
       Top             =   6930
       Width           =   1500
    End
-   Begin VB.Label Label4 
+   Begin VB.Label lblExpired 
       Alignment       =   2  'Center
       BackColor       =   &H000000FF&
       BorderStyle     =   1  'Fixed Single
@@ -366,7 +366,7 @@ Private Sub psubLoadFlexGrid(objData As Object)
                 .Row = 0
                 .Col = a
                 .ColAlignment(a) = flexAlignCenterCenter
-                .ColWidth(a) = Choose(a + 1, 2000, 2000, 1500, 1500, 1000, 1000, 1000, 1000, 1000, 1500, 2000, 1500)
+                .ColWidth(a) = Choose(a + 1, 2000, 2000, 1500, 1500, 1000, 1000, 1000, 1000, 1000, 1500, 2000, 2000)
                 .RowHeight(0) = 400
                 '.CellFontBold = True
       Next a
@@ -374,6 +374,19 @@ Private Sub psubLoadFlexGrid(objData As Object)
         Do While Not objData.EOF
 
                 .Rows = .Rows + 1
+                .Row = .Rows - 1
+                .Col = 0
+                
+                Select Case objData.Fields(10).Value
+                    Case "Expired"
+                        .CellBackColor = vbRed
+                    Case "Low Stock"
+                        .CellBackColor = vbGrayText
+                    Case "Over Stock"
+                        .CellBackColor = vbGreen
+                    Case Else
+                        .CellBackColor = vbWhite
+                End Select
                 For a = 0 To .Cols - 1
                      .TextMatrix(.Rows - 1, a) = IIf(IsNull(objData.Fields(a).Value), "", objData.Fields(a).Value)
                 Next a
@@ -395,11 +408,16 @@ Private Sub cboStatus_Click()
     Call psubGetData
 End Sub
 
+Private Sub cmdAdd_Click()
+ F_StockEditAdd.blnAdd = True
+    F_StockEditAdd.Show vbModal
+End Sub
+
 Private Sub Form_Load()
 Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT * FROM stocks"
-    
+    strSQL = strSQL & " SELECT ItemId,Name,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+    strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
   Set objData = clsConnect.GetRecordSet(strSQL)
 
   Call psubLoadFlexGrid(objData)
@@ -410,16 +428,40 @@ Dim objData As Object
   cboStatus.AddItem "Low Stock"
   cboStatus.AddItem "Over Stock"
   cboStatus.ListIndex = 0
+  lblExpired.BackColor = vbRed
+  lblOnStock.BackColor = vbWhite
+  lblLowStock.BackColor = vbGrayText
+  lblOverStock.BackColor = vbGreen
 
+End Sub
+
+
+
+Private Sub MSFlexGrid1_DblClick()
+If MSFlexGrid1.Row <> 0 Then
+
+
+    strSQL = ""
+    strSQL = strSQL & " SELECT ItemId,Name,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+    strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
+    strSQL = strSQL & " Where itemid = " & pfstrQuote(MSFlexGrid1.TextMatrix(MSFlexGrid1.Row, 0))
+    Set objData = clsConnect.GetRecordSet(strSQL)
+
+    Set F_StockEditAdd.objData = objData
+    F_StockEditAdd.blnAdd = False
+    F_StockEditAdd.Show vbModal
+
+End If
 End Sub
 
 Private Sub txtSearch_Change()
 Call psubGetData
 End Sub
-Private Sub psubGetData()
+Public Sub psubGetData()
     Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT * FROM stocks"
+      strSQL = strSQL & " SELECT ItemId,Name,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+    strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
      strSQL = strSQL & " Where itemid is not null"
     If txtSearch.Text <> "" Then
             strSQL = strSQL & " and name like '%" & txtSearch.Text & "%'"

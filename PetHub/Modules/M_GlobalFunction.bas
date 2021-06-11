@@ -38,3 +38,11 @@ Dim objUserExist As Object
         
         
 End Sub
+
+Public Function pfNumberOnly(key As Integer) As Integer
+    If (key < 48 Or key > 57) And key <> 8 Then
+       pfNumberOnly = 0
+    Else
+       pfNumberOnly = key
+    End If
+End Function
