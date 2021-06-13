@@ -43,8 +43,8 @@ Begin VB.Form F_LogIn
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_LogIn.frx":000C
-      PICN            =   "F_LogIn.frx":0028
+      MICON           =   "F_LogIn.frx":10CA
+      PICN            =   "F_LogIn.frx":10E6
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -125,8 +125,8 @@ Begin VB.Form F_LogIn
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_LogIn.frx":05C4
-      PICN            =   "F_LogIn.frx":05E0
+      MICON           =   "F_LogIn.frx":1682
+      PICN            =   "F_LogIn.frx":169E
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -136,15 +136,23 @@ Begin VB.Form F_LogIn
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin VB.Image Image2 
+      Height          =   1335
+      Left            =   180
+      Picture         =   "F_LogIn.frx":1C3A
+      Stretch         =   -1  'True
+      Top             =   990
+      Width           =   1110
+   End
    Begin VB.Label lblTitle 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
       Caption         =   "SCAD Cabinet Warehouse"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "MV Boli"
          Size            =   18
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -160,6 +168,14 @@ Begin VB.Form F_LogIn
       X2              =   1620
       Y1              =   180
       Y2              =   3315
+   End
+   Begin VB.Image Image1 
+      Height          =   3570
+      Left            =   0
+      Picture         =   "F_LogIn.frx":2D04
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   6765
    End
 End
 Attribute VB_Name = "F_LogIn"
@@ -200,7 +216,7 @@ Dim objUsers As Object
     Set objUsers = clsConnect.GetRecordSet(strSQL)
     If Not objUsers.EOF Then
     Set objUserData = objUsers
-        Call psubUpdateActivityLogs(objUsers.Fields(0).Value, True)
+        Call psubUpdateActivityLogs(objUsers.Fields(2).Value, True)
         F_MainMenu.Show
         MsgBox "Welcome " & objUsers.Fields("fullName") & " .", vbInformation, SystemTitle
         Unload Me
@@ -220,7 +236,7 @@ Private Sub txtPassword_GotFocus()
    If txtPassword.ForeColor = vbButtonShadow Then
         txtPassword.Text = ""
         txtPassword.ForeColor = vbWindowText
-        txtPassword.PasswordChar = "x"
+        txtPassword.PasswordChar = "*"
     End If
 End Sub
 

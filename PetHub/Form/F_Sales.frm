@@ -261,7 +261,7 @@ Begin VB.Form F_Sales
       _ExtentY        =   873
       BTYPE           =   4
       TX              =   "&Void"
-      ENAB            =   -1  'True
+      ENAB            =   0   'False
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Verdana"
          Size            =   9.75
@@ -456,6 +456,100 @@ Private Sub chkGrooming_Click()
      Call psubLoadCombo(objData)
 End Sub
 
+Private Sub cmdSumbit_Click()
+    If MSFlexGrid1.Rows > 1 Then
+        If Val(txtCash.Text) >= Val(txtPrice.Text) Then
+        
+                If MsgBox("Are you sure you want to submit ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+                   Call psubSubmitItems
+                   txtCash.Text = 0
+                   txtPrice.Text = 0
+                   txtChange.Text = 0
+                End If
+          
+        Else
+            MsgBox "Please add cash.", vbCritical, SystemTitle
+            txtCash.SetFocus
+        End If
+    Else
+        MsgBox "Please add item.", vbInformation, SystemTitle
+    End If
+End Sub
+Private Sub psubSubmitItems()
+    Dim strInvoice As String
+    Dim strInsertQuery As String
+    Dim i As Integer
+        strInvoice = "PHT" & Format(Now, "YYYYMMDDHHmmSS")
+    With MSFlexGrid1
+        strSQL = ""
+        strSQL = strSQL & " Insert into H_sales (InvoiceNo,TotalPrice,Cash,Changes,Cashier)"
+        strSQL = strSQL & " values (" & pfstrQuote(strInvoice)
+        strSQL = strSQL & " ," & txtPrice.Text
+        strSQL = strSQL & " ," & txtCash.Text
+        strSQL = strSQL & " ," & txtChange.Text
+        strSQL = strSQL & " ," & pfstrQuote(IIf(IsNull(objUserData.Fields(2).Value), "", objUserData.Fields(2).Value)) & ")"
+        
+        clsConnect.DBConnect.Execute (strSQL)
+        
+        For i = 1 To .Rows - 1
+        
+        strInsertQuery = strInsertQuery & IIf(i > 1, ",", "") & "(" & pfstrQuote(strInvoice)
+        strInsertQuery = strInsertQuery & "," & pfstrQuote(.TextMatrix(i, 0))
+        strInsertQuery = strInsertQuery & "," & .TextMatrix(i, 3)
+        strInsertQuery = strInsertQuery & "," & .TextMatrix(i, 4)
+        strInsertQuery = strInsertQuery & "," & .TextMatrix(i, 5) & ")"
+        
+        Next i
+        
+        strSQL = ""
+        strSQL = strSQL & " Insert into sales (InvoiceNo,ItemId,QTY,Price,TotalPrice)"
+        strSQL = strSQL & " values " & strInsertQuery
+        
+        clsConnect.DBConnect.Execute (strSQL)
+        strSQL = ""
+        strSQL = strSQL & " Update stocks"
+        strSQL = strSQL & " INNER join sales"
+        strSQL = strSQL & " on stocks.ItemId=sales.ItemId"
+        strSQL = strSQL & " Set stocks.QTY = stocks.QTY - sales.QTY"
+        strSQL = strSQL & " where sales.InvoiceNo=" & pfstrQuote(strInvoice)
+        clsConnect.DBConnect.Execute (strSQL)
+        MsgBox "Sumbit successfully.", vbInformation, SystemTitle
+        
+        Call psubClearFlex
+            
+    End With
+End Sub
+
+Private Sub cmdVoid_Click()
+        Dim i As Integer
+    With MSFlexGrid1
+If .RowSel <> 0 Then
+        If MsgBox("Are you sure to void this item ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+        
+            
+            
+            For i = .Row To .Rows - 2
+                    .TextMatrix(i, 0) = .TextMatrix(i + 1, 0)
+                    .TextMatrix(i, 1) = .TextMatrix(i + 1, 1)
+                    .TextMatrix(i, 2) = .TextMatrix(i + 1, 2)
+                    .TextMatrix(i, 3) = .TextMatrix(i + 1, 3)
+                    .TextMatrix(i, 4) = .TextMatrix(i + 1, 4)
+                    .TextMatrix(i, 5) = .TextMatrix(i + 1, 5)
+                  
+            Next i
+            
+            .Rows = .Rows - 1
+            
+            End If
+            .RowSel = 0
+            Call psubCountTotal
+            cmdVoid.Enabled = False
+        End If
+
+
+    End With
+End Sub
+
 Private Sub Form_Load()
 
    Call psubClearFlex
@@ -504,6 +598,10 @@ Private Function pfGetItemID(strValue As String) As Integer
 End Function
 
 
+Private Sub MSFlexGrid1_Click()
+    cmdVoid.Enabled = True
+End Sub
+
 Private Sub txtCash_Change()
      txtChange.Text = Val(txtCash.Text) - Val(txtPrice.Text)
 End Sub
@@ -537,25 +635,33 @@ Dim objData As Object
         
         
             If Not objData.EOF Then
-                With MSFlexGrid1
-                    .Rows = .Rows + 1
-                    .RowHeight(.Rows - 1) = 350
-                    .TextMatrix(.Rows - 1, 0) = IIf(IsNull(objData.Fields(0).Value), 0, objData.Fields(0).Value)
-                    .TextMatrix(.Rows - 1, 1) = cboItem.Text
-                    .TextMatrix(.Rows - 1, 3) = Val(txtQTY.Text)
-                     If chkGrooming.Value = 1 Then
-                      .TextMatrix(.Rows - 1, 2) = "-"
-                      .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(2).Value), 0, objData.Fields(2).Value)
-                     Else
-                     .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(7).Value), "", objData.Fields(7).Value)
-                      .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(8).Value), 0, objData.Fields(8).Value)
-                     End If
-                    .TextMatrix(.Rows - 1, 5) = Val(txtQTY.Text) * Val(.TextMatrix(.Rows - 1, 4))
-                    
-                End With
-                txtQTY.Text = ""
-                cboItem.Text = ""
-                Call psubCountTotal
+                If pfBlnAddQTY(objData) Then
+                         Call psubCountTotal
+                         txtQTY.Text = ""
+                    cboItem.Text = ""
+                        Exit Sub
+                Else
+                    With MSFlexGrid1
+                        .Rows = .Rows + 1
+                        .RowHeight(.Rows - 1) = 350
+                        .TextMatrix(.Rows - 1, 0) = IIf(IsNull(objData.Fields(0).Value), 0, objData.Fields(0).Value)
+                        .TextMatrix(.Rows - 1, 1) = cboItem.Text
+                        .TextMatrix(.Rows - 1, 3) = Val(txtQTY.Text)
+                         If chkGrooming.Value = 1 Then
+                          .TextMatrix(.Rows - 1, 2) = "-"
+                          .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(2).Value), 0, objData.Fields(2).Value)
+                         Else
+                         .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(7).Value), "", objData.Fields(7).Value)
+                          .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(8).Value), 0, Val(objData.Fields(8).Value))
+                         End If
+                        .TextMatrix(.Rows - 1, 5) = Val(txtQTY.Text) * IIf(IsNull(objData.Fields(8).Value), 0, Val(objData.Fields(8).Value))
+                        
+                    End With
+                    txtQTY.Text = ""
+                    cboItem.Text = ""
+                         Call psubCountTotal
+                End If
+           
             Else
                 MsgBox "Stock not fullfil quantity needs.", vbCritical, SystemTitle
                 txtQTY.SetFocus
@@ -585,4 +691,16 @@ Dim intTotalQTY, intTotalPrice, intTotalAll As Double
   txtPrice.Text = txtTotalAll
   
 End Sub
+Private Function pfBlnAddQTY(objData As Object) As Boolean
+      With MSFlexGrid1
+        For i = 1 To .Rows - 1
+            If .TextMatrix(i, 0) = objData.Fields(0).Value Then
+             .TextMatrix(i, 3) = Val(.TextMatrix(i, 3)) + Val(txtQTY.Text)
+             pfBlnAddQTY = True
+            End If
+        Next i
+        
+  End With
+End Function
+
 

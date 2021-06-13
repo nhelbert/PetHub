@@ -14,6 +14,7 @@ Begin VB.Form F_MainMenu
    ScaleHeight     =   7560
    ScaleWidth      =   9915
    StartUpPosition =   2  'CenterScreen
+   WindowState     =   2  'Maximized
    Begin OsenXPCntrl.OsenXPButton cmdMain 
       Height          =   2505
       Index           =   0
@@ -24,7 +25,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   ""
+      TX              =   "GROOMING"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -63,7 +64,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   ""
+      TX              =   "SALES"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -102,7 +103,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   ""
+      TX              =   "STOCK MANAGEMENT"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -134,14 +135,14 @@ Begin VB.Form F_MainMenu
    Begin OsenXPCntrl.OsenXPButton cmdMain 
       Height          =   2505
       Index           =   3
-      Left            =   1905
+      Left            =   1935
       TabIndex        =   3
-      Top             =   3904
+      Top             =   3870
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   ""
+      TX              =   "REPORTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -180,7 +181,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   ""
+      TX              =   "USER RIGHTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
@@ -209,6 +210,53 @@ Begin VB.Form F_MainMenu
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin OsenXPCntrl.OsenXPButton cmdLogIn 
+      Height          =   495
+      Left            =   7785
+      TabIndex        =   5
+      Top             =   6885
+      Width           =   1995
+      _ExtentX        =   3519
+      _ExtentY        =   873
+      BTYPE           =   4
+      TX              =   "&Logout"
+      ENAB            =   -1  'True
+      BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      COLTYPE         =   1
+      FOCUSR          =   -1  'True
+      BCOL            =   16777215
+      BCOLO           =   16777215
+      FCOL            =   0
+      FCOLO           =   16711680
+      MCOL            =   12632256
+      MPTR            =   0
+      MICON           =   "F_MainMenu.frx":1156
+      PICN            =   "F_MainMenu.frx":1172
+      UMCOL           =   -1  'True
+      SOFT            =   0   'False
+      PICPOS          =   0
+      NGREY           =   0   'False
+      FX              =   0
+      HAND            =   0   'False
+      CHECK           =   0   'False
+      VALUE           =   0   'False
+   End
+   Begin VB.Image Image1 
+      Height          =   7575
+      Left            =   0
+      Picture         =   "F_MainMenu.frx":170E
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   9915
+   End
 End
 Attribute VB_Name = "F_MainMenu"
 Attribute VB_GlobalNameSpace = False
@@ -216,6 +264,10 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
+Private Sub cmdLogIn_Click()
+    Unload Me
+End Sub
 
 Private Sub cmdMain_Click(Index As Integer)
     Select Case Index

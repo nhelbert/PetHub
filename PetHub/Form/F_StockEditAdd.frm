@@ -540,6 +540,16 @@ End Function
 Private Sub cmdSave_Click()
   If pfblnNotInput Then Exit Sub
    If blnAdd Then
+    Dim objStocks As Object
+          strSQL = ""
+        strSQL = strSQL & " select * from  stocks where name =" & pfstrQuote(txtItemName.Text)
+        Set objStocks = clsConnect.GetRecordSet(strSQL)
+        
+        If Not objStocks.EOF Then
+            MsgBox "Item name already exist.", vbCritical, SystemTitle
+            Exit Sub
+        End If
+        
         If MsgBox("Are you sure you want to add this item ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         Dim objItemName As Variant

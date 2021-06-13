@@ -254,6 +254,14 @@ Begin VB.Form F_Grooming
       Top             =   3960
       Width           =   2265
    End
+   Begin VB.Image Image1 
+      Height          =   6045
+      Left            =   0
+      Picture         =   "F_Grooming.frx":111E
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   5910
+   End
 End
 Attribute VB_Name = "F_Grooming"
 Attribute VB_GlobalNameSpace = False
@@ -272,6 +280,7 @@ Private Sub psubClear()
        txtDescription.SetFocus
        intID = 0
        cmdSave.Caption = "&Save"
+       cmdDelete.Caption = "&Clear"
       cmdAddNew.Enabled = False
 End Sub
 
@@ -394,6 +403,7 @@ Dim objData As Object
         End If
         cmdAddNew.Enabled = True
         cmdSave.Caption = "&Update"
+        cmdDelete.Caption = "&Delete"
      End If
 End Sub
 
