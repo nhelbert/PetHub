@@ -1,6 +1,7 @@
 VERSION 5.00
 Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "ponga.ocx"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "Msflxgrd.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form F_Reports 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Reports"
@@ -16,41 +17,17 @@ Begin VB.Form F_Reports
    ScaleWidth      =   9765
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
-   Begin VB.TextBox txtFromTo 
-      Alignment       =   2  'Center
-      Appearance      =   0  'Flat
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   5355
+   Begin MSComCtl2.DTPicker dtFrom 
+      Height          =   330
+      Left            =   1665
       TabIndex        =   10
       Top             =   180
-      Width           =   2000
-   End
-   Begin VB.TextBox txtDateFrom 
-      Alignment       =   2  'Center
-      Appearance      =   0  'Flat
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   1665
-      TabIndex        =   8
-      Top             =   180
-      Width           =   2000
+      Width           =   1995
+      _ExtentX        =   3519
+      _ExtentY        =   582
+      _Version        =   393216
+      Format          =   134283265
+      CurrentDate     =   44360
    End
    Begin VB.TextBox txtIncome 
       Alignment       =   2  'Center
@@ -175,6 +152,18 @@ Begin VB.Form F_Reports
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin MSComCtl2.DTPicker dtTo 
+      Height          =   330
+      Left            =   5355
+      TabIndex        =   11
+      Top             =   180
+      Width           =   1995
+      _ExtentX        =   3519
+      _ExtentY        =   582
+      _Version        =   393216
+      Format          =   134283265
+      CurrentDate     =   44360
+   End
    Begin VB.Label Label5 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
@@ -190,7 +179,7 @@ Begin VB.Form F_Reports
       EndProperty
       Height          =   345
       Left            =   3825
-      TabIndex        =   11
+      TabIndex        =   9
       Top             =   180
       Width           =   1500
    End
@@ -209,7 +198,7 @@ Begin VB.Form F_Reports
       EndProperty
       Height          =   345
       Left            =   135
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   180
       Width           =   1500
    End
@@ -302,30 +291,68 @@ Private Sub psubLoadFlexGrid(objData As Object)
                 .TextMatrix(.Rows - 1, 5) = IIf(IsNull(objData.Fields(3).Value), "", objData.Fields(3).Value)
                 .TextMatrix(.Rows - 1, 6) = IIf(IsNull(objData.Fields(5).Value), "", objData.Fields(5).Value)
                 
-            intTotalSales = intTotalSales + IIf(IsNull(objData.Fields(1).Value), 0, objData.Fields(1).Value)
+           
                
             objData.MoveNext
         Loop
-        txtTotalSales.Text = intTotalSales
-    
+   
     End With
     
 
 End Sub
+Private Sub psubGetTotals()
+Dim objTotal As Object
+     txtTotalSales.Text = 0
+     txtCapital.Text = 0
+     txtIncome.Text = 0
+    
+    strSQL = ""
+    strSQL = strSQL & "SELECT sum(b.TotalPrice) AS totalPrice ,sum(B.QTY * c.ActPrice) AS totalCapital FROM h_sales a"
+    strSQL = strSQL & " INNER JOIN sales b"
+    strSQL = strSQL & " ON a.InvoiceNo=b.InvoiceNo"
+    strSQL = strSQL & " INNER JOIN stocks c"
+    strSQL = strSQL & " ON b.ItemId=c.ItemId"
+    strSQL = strSQL & " where DATE_FORMAT(a.transDate,'%Y%m%d') between DATE_FORMAT(" & pfstrQuote(dtFrom.Value) & ",'%Y%m%d')"
+    strSQL = strSQL & " and DATE_FORMAT(" & pfstrQuote(dtTo.Value) & ",'%Y%m%d')"
+    Set objTotal = clsConnect.GetRecordSet(strSQL)
+    If Not objTotal.EOF Then
+        txtTotalSales.Text = IIf(IsNull(objTotal.Fields(0).Value), 0, objTotal.Fields(0).Value)
+        txtCapital.Text = IIf(IsNull(objTotal.Fields(1).Value), 0, objTotal.Fields(1).Value)
+        txtIncome.Text = Val(txtTotalSales.Text) - Val(txtCapital.Text)
+    End If
+End Sub
 
 Private Sub cmdPrint_Click()
 
-    DT_Reciept.Print
+    DT_Reciept.Show vbModal
+End Sub
+
+Private Sub psubFilter()
+   Dim objData As Object
+        strSQL = ""
+    strSQL = strSQL & " SELECT * From H_sales"
+    strSQL = strSQL & " where DATE_FORMAT(transDate,'%Y%m%d') between DATE_FORMAT(" & pfstrQuote(dtFrom.Value) & ",'%Y%m%d')"
+    strSQL = strSQL & " and DATE_FORMAT(" & pfstrQuote(dtTo.Value) & ",'%Y%m%d')"
+    Set objData = clsConnect.GetRecordSet(strSQL)
+  
+  Call psubLoadFlexGrid(objData)
+  DT_Reciept.DataSource = objData
+  Call psubGetTotals
+End Sub
+
+Private Sub dtFrom_Change()
+      Call psubFilter
+End Sub
+
+Private Sub dtTo_Change()
+    Call psubFilter
 End Sub
 
 Private Sub Form_Load()
-    Dim objData As Object
-    strSQL = ""
-    strSQL = strSQL & " SELECT * From H_sales"
-    strSQL = strSQL & " where DATE_FORMAT(transDate,'%Y%m%d')=DATE_FORMAT(now(),'%Y%m%d')"
-    
-    Set objData = clsConnect.GetRecordSet(strSQL)
+ 
+    dtFrom.Value = Now()
+    dtTo.Value = Now()
+    Call psubFilter
 
-  Call psubLoadFlexGrid(objData)
 End Sub
 

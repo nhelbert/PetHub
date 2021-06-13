@@ -540,7 +540,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Dim strAns1, strAns2, strAns3 As String
+Dim strAns1, strAns2, strAns3, strOldUsername As String
 Dim intID As Integer
 Dim objUserQuestions As Object
 
@@ -558,9 +558,27 @@ Private Sub cboQuestion3_Click()
     strAns3 = InputBox(cboQuestion3.Text, SystemTitle)
      If strAns3 = "" Then cboQuestion3.Text = ""
 End Sub
-
+Private Function pfBlnAlreadyExist(blnUpdate As Boolean) As Boolean
+  Dim objAlreadyExist As Object
+        strSQL = ""
+        strSQL = strSQL & " select * from  users where employeecode =" & pfstrQuote(txtUserName.Text)
+        If blnUpdate Then
+        
+        strSQL = strSQL & " and employeeCode <>" & pfstrQuote(strOldUsername)
+        End If
+        Set objAlreadyExist = clsConnect.GetRecordSet(strSQL)
+        
+        If Not objAlreadyExist.EOF Then
+            pfBlnAlreadyExist = True
+            MsgBox "Username already exist.", vbCritical, SystemTitle
+            Exit Function
+        End If
+End Function
 Private Sub cmdAdd_Click()
     If pfblnNotInput Then Exit Sub
+    If pfBlnAlreadyExist(False) Then Exit Sub
+        
+    
     If MsgBox("Are you sure you want to add this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         
@@ -605,6 +623,7 @@ Private Sub psubClear()
     strAns1 = ""
     strAns2 = ""
     strAns3 = ""
+    strOldUsername = ""
     intID = 0
     txtName.SetFocus
     cmdUpdate.Enabled = False
@@ -636,7 +655,7 @@ End Sub
 
 Private Sub cmdUpdate_Click()
     If pfblnNotInput Then Exit Sub
-    
+    If pfBlnAlreadyExist(True) Then Exit Sub
     If MsgBox("Are you sure you want to update this user ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         
@@ -739,6 +758,7 @@ If MSFlexGrid1.Row <> 0 Then
     Set objData = clsConnect.GetRecordSet(strSQL)
 
     If Not objData.EOF Then
+    strOldUsername = IIf(IsNull(objData.Fields(6).Value), "", objData.Fields(6).Value)
         txtName.Text = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
         cboAccessType.Text = IIf(IsNull(objData.Fields(4).Value), "", Choose(objData.Fields(4).Value + 1, "ADMIN", "USER"))
         cboQuestion1.Text = pfGetQuestionName(IIf(IsNull(objData.Fields(7).Value), "", objData.Fields(7).Value))

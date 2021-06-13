@@ -59,7 +59,7 @@ Begin VB.Form F_StockManagement
       _ExtentX        =   25876
       _ExtentY        =   10742
       _Version        =   393216
-      Cols            =   12
+      Cols            =   13
       FixedCols       =   0
       HighLight       =   2
       SelectionMode   =   1
@@ -362,11 +362,11 @@ Private Sub psubLoadFlexGrid(objData As Object)
     With MSFlexGrid1
         .Rows = 1
       For a = 0 To .Cols - 1
-                .TextMatrix(0, a) = Choose(a + 1, "ITEM ID", "NAME", "BRAND", "EXPIRE DATE", "MAX", "MIN", "QTY", "UNIT", "PRICE", "ACTUAL PRICE", "REMARKS", "ENTRY DATE")
+                .TextMatrix(0, a) = Choose(a + 1, "ITEM ID", "NAME", "PRODUCT", "BRAND", "EXPIRE DATE", "MAX", "MIN", "QTY", "UNIT", "PRICE", "ACTUAL PRICE", "REMARKS", "ENTRY DATE")
                 .Row = 0
                 .Col = a
                 .ColAlignment(a) = flexAlignCenterCenter
-                .ColWidth(a) = Choose(a + 1, 2000, 2000, 1500, 1500, 1000, 1000, 1000, 1000, 1000, 1500, 2000, 2000)
+                .ColWidth(a) = Choose(a + 1, 2000, 2000, 1500, 1500, 1500, 1000, 1000, 1000, 1000, 1000, 1500, 2000, 2000)
                 .RowHeight(0) = 400
                 '.CellFontBold = True
       Next a
@@ -377,7 +377,7 @@ Private Sub psubLoadFlexGrid(objData As Object)
                 .Row = .Rows - 1
                 .Col = 0
                 
-                Select Case objData.Fields(10).Value
+                Select Case objData.Fields(11).Value
                     Case "Expired"
                         .CellBackColor = vbRed
                     Case "Low Stock"
@@ -416,7 +416,7 @@ End Sub
 Private Sub Form_Load()
 Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & " SELECT ItemId,Name,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+    strSQL = strSQL & " SELECT ItemId,Name,productname,Brand,ExDate,Max,Min,QTY,Unit,Price,"
     strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
   Set objData = clsConnect.GetRecordSet(strSQL)
 
@@ -442,7 +442,7 @@ If MSFlexGrid1.Row <> 0 Then
 
 
     strSQL = ""
-    strSQL = strSQL & " SELECT ItemId,Name,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+    strSQL = strSQL & " SELECT ItemId,Name,productname,Brand,ExDate,Max,Min,QTY,Unit,Price,"
     strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
     strSQL = strSQL & " Where itemid = " & pfstrQuote(MSFlexGrid1.TextMatrix(MSFlexGrid1.Row, 0))
     Set objData = clsConnect.GetRecordSet(strSQL)
@@ -460,7 +460,7 @@ End Sub
 Public Sub psubGetData()
     Dim objData As Object
     strSQL = ""
-      strSQL = strSQL & " SELECT ItemId,Name,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+      strSQL = strSQL & " SELECT ItemId,Name,productname,Brand,ExDate,Max,Min,QTY,Unit,Price,"
     strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
      strSQL = strSQL & " Where itemid is not null"
     If txtSearch.Text <> "" Then

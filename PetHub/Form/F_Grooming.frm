@@ -254,14 +254,6 @@ Begin VB.Form F_Grooming
       Top             =   3960
       Width           =   2265
    End
-   Begin VB.Image Image1 
-      Height          =   6045
-      Left            =   0
-      Picture         =   "F_Grooming.frx":111E
-      Stretch         =   -1  'True
-      Top             =   0
-      Width           =   5910
-   End
 End
 Attribute VB_Name = "F_Grooming"
 Attribute VB_GlobalNameSpace = False
@@ -269,6 +261,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Dim intID As Integer
+Dim strOldDescription As String
 
 Private Sub cmdAddNew_Click()
     Call psubClear
@@ -279,6 +272,7 @@ Private Sub psubClear()
        txtPrice.Text = ""
        txtDescription.SetFocus
        intID = 0
+       strOldDescription = ""
        cmdSave.Caption = "&Save"
        cmdDelete.Caption = "&Clear"
       cmdAddNew.Enabled = False
@@ -303,10 +297,29 @@ Else
   End If
 End Sub
 
+Private Function pfBlnAlreadyExist(blnUpdate As Boolean) As Boolean
+  Dim objAlreadyExist As Object
+        strSQL = ""
+        strSQL = strSQL & " select * from  grooming where Description =" & pfstrQuote(txtDescription.Text)
+        If blnUpdate Then
+        
+        strSQL = strSQL & " and Description <>" & pfstrQuote(strOldDescription)
+        End If
+        Set objAlreadyExist = clsConnect.GetRecordSet(strSQL)
+        
+        If Not objAlreadyExist.EOF Then
+            pfBlnAlreadyExist = True
+            txtDescription.SetFocus
+            MsgBox "Grooming already exist.", vbCritical, SystemTitle
+            Exit Function
+        End If
+End Function
 Private Sub cmdSave_Click()
  
     If pfblnNotInput Then Exit Sub
+    
     If intID = 0 Then
+    If pfBlnAlreadyExist(False) Then Exit Sub
         If MsgBox("Are you sure you want to add this Grooming ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
             strSQL = ""
             strSQL = strSQL & " Insert into grooming"
@@ -320,6 +333,7 @@ Private Sub cmdSave_Click()
             Call psubGetData
         End If
     Else
+        If pfBlnAlreadyExist(True) Then Exit Sub
         If MsgBox("Are you sure you want to update this Grooming ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
             strSQL = ""
@@ -400,7 +414,9 @@ Dim objData As Object
             intID = IIf(IsNull(objData.Fields(0).Value), "", objData.Fields(0).Value)
             txtDescription.Text = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
             txtPrice.Text = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+                strOldDescription = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
         End If
+    
         cmdAddNew.Enabled = True
         cmdSave.Caption = "&Update"
         cmdDelete.Caption = "&Delete"

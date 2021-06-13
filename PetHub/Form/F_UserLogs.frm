@@ -73,7 +73,7 @@ Attribute VB_Exposed = False
 Private Sub Form_Load()
 Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT a.*,b.fullname FROM useractivity a inner join users b on a.id=b.id"
+    strSQL = strSQL & "SELECT a.*,b.fullname FROM useractivity a inner join users b on a.user=b.employeeCode"
     
   Set objData = clsConnect.GetRecordSet(strSQL)
   

@@ -136,14 +136,6 @@ Begin VB.Form F_LogIn
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
-   Begin VB.Image Image2 
-      Height          =   1335
-      Left            =   180
-      Picture         =   "F_LogIn.frx":1C3A
-      Stretch         =   -1  'True
-      Top             =   990
-      Width           =   1110
-   End
    Begin VB.Label lblTitle 
       Alignment       =   2  'Center
       BackStyle       =   0  'Transparent
@@ -168,14 +160,6 @@ Begin VB.Form F_LogIn
       X2              =   1620
       Y1              =   180
       Y2              =   3315
-   End
-   Begin VB.Image Image1 
-      Height          =   3570
-      Left            =   0
-      Picture         =   "F_LogIn.frx":2D04
-      Stretch         =   -1  'True
-      Top             =   0
-      Width           =   6765
    End
 End
 Attribute VB_Name = "F_LogIn"
@@ -216,7 +200,7 @@ Dim objUsers As Object
     Set objUsers = clsConnect.GetRecordSet(strSQL)
     If Not objUsers.EOF Then
     Set objUserData = objUsers
-        Call psubUpdateActivityLogs(objUsers.Fields(2).Value, True)
+        Call psubUpdateActivityLogs(objUsers.Fields(1).Value, True)
         F_MainMenu.Show
         MsgBox "Welcome " & objUsers.Fields("fullName") & " .", vbInformation, SystemTitle
         Unload Me
@@ -240,6 +224,13 @@ Private Sub txtPassword_GotFocus()
     End If
 End Sub
 
+Private Sub txtPassword_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+
+     Call cmdLogIn_Click
+     End If
+End Sub
+
 Private Sub txtPassword_LostFocus()
   If txtPassword.Text = "" Then
         txtPassword.Text = "Password"
@@ -255,6 +246,13 @@ Private Sub txtUserName_GotFocus()
         txtUserName.ForeColor = vbWindowText
     End If
     
+End Sub
+
+Private Sub txtUserName_KeyPress(KeyAscii As Integer)
+If KeyAscii = 13 Then
+
+     Call cmdLogIn_Click
+     End If
 End Sub
 
 Private Sub txtUserName_LostFocus()

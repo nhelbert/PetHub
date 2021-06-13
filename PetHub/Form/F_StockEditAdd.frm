@@ -1,9 +1,10 @@
 VERSION 5.00
 Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "ponga.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form F_StockEditAdd 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Add New Stock"
-   ClientHeight    =   5550
+   ClientHeight    =   6060
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   5910
@@ -11,28 +12,22 @@ Begin VB.Form F_StockEditAdd
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5550
+   ScaleHeight     =   6060
    ScaleWidth      =   5910
    StartUpPosition =   1  'CenterOwner
-   Begin VB.TextBox txtExDate 
-      Alignment       =   1  'Right Justify
-      Appearance      =   0  'Flat
-      BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   2415
-      TabIndex        =   21
-      Top             =   1620
+   Begin MSComCtl2.DTPicker dtExDate 
+      Height          =   375
+      Left            =   2430
+      TabIndex        =   23
+      Top             =   1980
       Width           =   3330
+      _ExtentX        =   5874
+      _ExtentY        =   661
+      _Version        =   393216
+      Format          =   72548353
+      CurrentDate     =   44360
    End
-   Begin VB.ComboBox cboBrand 
+   Begin VB.ComboBox cboProduct 
       Appearance      =   0  'Flat
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -49,6 +44,23 @@ Begin VB.Form F_StockEditAdd
       Top             =   1170
       Width           =   3330
    End
+   Begin VB.ComboBox cboBrand 
+      Appearance      =   0  'Flat
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   2430
+      TabIndex        =   2
+      Top             =   1575
+      Width           =   3330
+   End
    Begin VB.TextBox txtActPrice 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
@@ -63,8 +75,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   360
       Left            =   2370
-      TabIndex        =   6
-      Top             =   4320
+      TabIndex        =   8
+      Top             =   4680
       Width           =   3330
    End
    Begin VB.TextBox txtPrice 
@@ -80,9 +92,9 @@ Begin VB.Form F_StockEditAdd
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   2370
-      TabIndex        =   5
-      Top             =   3870
+      Left            =   2385
+      TabIndex        =   7
+      Top             =   4230
       Width           =   3330
    End
    Begin VB.TextBox txtQTY 
@@ -99,8 +111,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   360
       Left            =   2385
-      TabIndex        =   4
-      Top             =   2970
+      TabIndex        =   5
+      Top             =   3330
       Width           =   3330
    End
    Begin VB.TextBox txtMinQTY 
@@ -117,8 +129,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   360
       Left            =   2385
-      TabIndex        =   3
-      Top             =   2520
+      TabIndex        =   4
+      Top             =   2880
       Width           =   3330
    End
    Begin VB.TextBox txtMaxQTY 
@@ -135,8 +147,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   360
       Left            =   2415
-      TabIndex        =   2
-      Top             =   2070
+      TabIndex        =   3
+      Top             =   2430
       Width           =   3330
    End
    Begin VB.TextBox txtItemName 
@@ -172,7 +184,7 @@ Begin VB.Form F_StockEditAdd
       Height          =   360
       Left            =   2430
       Locked          =   -1  'True
-      TabIndex        =   20
+      TabIndex        =   21
       TabStop         =   0   'False
       Text            =   "Generated when save"
       Top             =   270
@@ -191,15 +203,15 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   360
       Left            =   2385
-      TabIndex        =   9
-      Top             =   3420
+      TabIndex        =   6
+      Top             =   3735
       Width           =   3330
    End
    Begin OsenXPCntrl.OsenXPButton cmdSave 
       Height          =   495
       Left            =   3690
-      TabIndex        =   7
-      Top             =   4905
+      TabIndex        =   9
+      Top             =   5265
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   873
@@ -236,8 +248,8 @@ Begin VB.Form F_StockEditAdd
    Begin OsenXPCntrl.OsenXPButton cmdDelete 
       Height          =   495
       Left            =   90
-      TabIndex        =   8
-      Top             =   4905
+      TabIndex        =   10
+      Top             =   5265
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   873
@@ -271,6 +283,25 @@ Begin VB.Form F_StockEditAdd
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin VB.Label Label11 
+      Alignment       =   2  'Center
+      BorderStyle     =   1  'Fixed Single
+      Caption         =   "Brand :"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   345
+      Left            =   135
+      TabIndex        =   22
+      Top             =   1575
+      Width           =   2265
+   End
    Begin VB.Label Label10 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
@@ -286,8 +317,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   90
-      TabIndex        =   19
-      Top             =   4320
+      TabIndex        =   20
+      Top             =   4680
       Width           =   2265
    End
    Begin VB.Label Label9 
@@ -305,8 +336,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   90
-      TabIndex        =   18
-      Top             =   3870
+      TabIndex        =   19
+      Top             =   4230
       Width           =   2265
    End
    Begin VB.Label Label8 
@@ -324,8 +355,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   105
-      TabIndex        =   17
-      Top             =   2520
+      TabIndex        =   18
+      Top             =   2880
       Width           =   2265
    End
    Begin VB.Label Label7 
@@ -343,8 +374,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   105
-      TabIndex        =   16
-      Top             =   3420
+      TabIndex        =   17
+      Top             =   3780
       Width           =   2265
    End
    Begin VB.Label Label6 
@@ -362,8 +393,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   105
-      TabIndex        =   15
-      Top             =   2970
+      TabIndex        =   16
+      Top             =   3330
       Width           =   2265
    End
    Begin VB.Label Label5 
@@ -381,8 +412,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   135
-      TabIndex        =   14
-      Top             =   2070
+      TabIndex        =   15
+      Top             =   2430
       Width           =   2265
    End
    Begin VB.Label Label3 
@@ -400,8 +431,8 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   135
-      TabIndex        =   13
-      Top             =   1620
+      TabIndex        =   14
+      Top             =   1980
       Width           =   2265
    End
    Begin VB.Label Label4 
@@ -419,14 +450,14 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   150
-      TabIndex        =   12
+      TabIndex        =   13
       Top             =   270
       Width           =   2265
    End
    Begin VB.Label Label2 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "Brand :"
+      Caption         =   "Product Name :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -438,7 +469,7 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   150
-      TabIndex        =   11
+      TabIndex        =   12
       Top             =   1170
       Width           =   2265
    End
@@ -457,7 +488,7 @@ Begin VB.Form F_StockEditAdd
       EndProperty
       Height          =   345
       Left            =   150
-      TabIndex        =   10
+      TabIndex        =   11
       Top             =   720
       Width           =   2265
    End
@@ -472,8 +503,8 @@ Public blnAdd As Boolean
 Private Sub psubClear()
     txtItemID.Text = "Generated when save"
     txtItemName.Text = ""
+    cboProduct.Text = ""
     cboBrand.Text = ""
-    txtExDate.Text = ""
     txtMaxQTY.Text = ""
     txtMinQTY.Text = ""
     txtQTY.Text = ""
@@ -507,12 +538,13 @@ Private Function pfblnNotInput() As Boolean
         If txtItemName.Text = "" Then
             txtItemName.SetFocus
             pfblnNotInput = True
+             ElseIf cboProduct.Text = "" Then
+            cboProduct.SetFocus
+            pfblnNotInput = True
         ElseIf cboBrand.Text = "" Then
             cboBrand.SetFocus
             pfblnNotInput = True
-        ElseIf txtExDate.Text = "" Then
-            txtExDate.SetFocus
-            pfblnNotInput = True
+
             
         ElseIf txtMaxQTY.Text = "" Then
             txtMaxQTY.SetFocus
@@ -563,11 +595,12 @@ Private Sub cmdSave_Click()
         
         strSQL = ""
         strSQL = strSQL & " Insert into stocks"
-        strSQL = strSQL & " (itemID,name,brand,exdate,max,min,qty,unit,price,actprice)"
+        strSQL = strSQL & " (itemID,name,productname ,brand,exdate,max,min,qty,unit,price,actprice)"
         strSQL = strSQL & " values (concat(" & pfstrQuote(strItemID) & ",DATE_FORMAT(now(), '%Y%m%d%H%i%s'))"
         strSQL = strSQL & "     ," & pfstrQuote(txtItemName.Text)
+        strSQL = strSQL & "     ," & pfstrQuote(cboProduct.Text)
         strSQL = strSQL & "     ," & pfstrQuote(cboBrand.Text)
-        strSQL = strSQL & "     ,now()" ' & pfstrQuote(txtExDate.Text)
+        strSQL = strSQL & "     ,DATE_FORMAT(" & pfstrQuote(dtExDate.Value) & ",'%Y/%m/%d')"
         strSQL = strSQL & "     ," & txtMaxQTY.Text
         strSQL = strSQL & "     ," & txtMinQTY.Text
         strSQL = strSQL & "     ," & txtQTY.Text
@@ -592,8 +625,9 @@ Private Sub cmdSave_Click()
         strSQL = ""
         strSQL = strSQL & " Update stocks"
         strSQL = strSQL & " Set name=" & pfstrQuote(txtItemName.Text)
+        strSQL = strSQL & "     ,productname=" & pfstrQuote(cboProduct.Text)
         strSQL = strSQL & "     ,brand=" & pfstrQuote(cboBrand.Text)
-        strSQL = strSQL & "     ,exdate=" & "now()"
+        strSQL = strSQL & "     ,exdate=" & pfstrQuote(dtExDate.Value)
         strSQL = strSQL & "     ,max=" & txtMaxQTY.Text
         strSQL = strSQL & "     ,min=" & txtMinQTY.Text
         strSQL = strSQL & "     ,qty=" & txtQTY.Text
@@ -616,23 +650,28 @@ End Sub
 Private Sub Form_Load()
 Dim objBrand As Object
 Dim objUnit As Object
+Dim objProduct As Object
+
     If Not blnAdd Then
       If Not objData.EOF Then
       
         txtItemID.Text = IIf(IsNull(objData.Fields(0).Value), "", objData.Fields(0).Value)
         txtItemName.Text = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
-        cboBrand.Text = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
-        txtExDate.Text = IIf(IsNull(objData.Fields(3).Value), "", objData.Fields(3).Value)
-        txtMaxQTY.Text = IIf(IsNull(objData.Fields(4).Value), "", objData.Fields(4).Value)
-        txtMinQTY.Text = IIf(IsNull(objData.Fields(5).Value), "", objData.Fields(5).Value)
-        txtQTY.Text = IIf(IsNull(objData.Fields(6).Value), "", objData.Fields(6).Value)
-        cboUnit.Text = IIf(IsNull(objData.Fields(7).Value), "", objData.Fields(7).Value)
-        txtPrice.Text = IIf(IsNull(objData.Fields(8).Value), "", objData.Fields(8).Value)
-        txtActPrice = IIf(IsNull(objData.Fields(9).Value), "", objData.Fields(9).Value)
+        cboProduct.Text = IIf(IsNull(objData.Fields(2).Value), "", objData.Fields(2).Value)
+        cboBrand.Text = IIf(IsNull(objData.Fields(3).Value), "", objData.Fields(3).Value)
+        dtExDate.Value = IIf(IsNull(objData.Fields(4).Value), "", objData.Fields(4).Value)
+        txtMaxQTY.Text = IIf(IsNull(objData.Fields(5).Value), "", objData.Fields(5).Value)
+        txtMinQTY.Text = IIf(IsNull(objData.Fields(6).Value), "", objData.Fields(6).Value)
+        txtQTY.Text = IIf(IsNull(objData.Fields(7).Value), "", objData.Fields(7).Value)
+        cboUnit.Text = IIf(IsNull(objData.Fields(8).Value), "", objData.Fields(8).Value)
+        txtPrice.Text = IIf(IsNull(objData.Fields(9).Value), "", objData.Fields(9).Value)
+        txtActPrice = IIf(IsNull(objData.Fields(10).Value), "", objData.Fields(10).Value)
         
     End If
         F_StockEditAdd.Caption = "Edit Stock"
         cmdDelete.Caption = "&Delete"
+    Else
+        dtExDate.Value = Format(Now(), "YYYY-MM-DD")
     End If
     
      strSQL = ""
@@ -641,9 +680,13 @@ Dim objUnit As Object
      strSQL = ""
      strSQL = strSQL & " Select * from unit"
     Set objUnit = clsConnect.GetRecordSet(strSQL)
+         strSQL = ""
+     strSQL = strSQL & " Select * from products"
+    Set objProduct = clsConnect.GetRecordSet(strSQL)
     
     Call psubLoadCombo(cboBrand, objBrand)
     Call psubLoadCombo(cboUnit, objUnit)
+    Call psubLoadCombo(cboProduct, objProduct)
     
 End Sub
 

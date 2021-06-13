@@ -521,25 +521,47 @@ Private Sub psubSubmitItems()
 End Sub
 
 Private Sub cmdVoid_Click()
-        Dim i As Integer
+        Dim i, intQTY As Integer
     With MSFlexGrid1
 If .RowSel <> 0 Then
-        If MsgBox("Are you sure to void this item ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
-            
-            
-            For i = .Row To .Rows - 2
+        If .TextMatrix(.RowSel, 3) > 1 Then
+        Else
+        
+        intQTY = InputBox("Please input void quantity", SystemTitle, 1)
+        .TextMatrix(.RowSel, 3) = Val(.TextMatrix(i, 3)) - Val(intQTY)
+        .TextMatrix(.RowSel, 5) = Val(.TextMatrix(i, 4)) * Val(.TextMatrix(i, 3))
+        If .TextMatrix(.RowSel, 3) <= 0 Then
+                 For i = .Row To .Rows - 2
                     .TextMatrix(i, 0) = .TextMatrix(i + 1, 0)
                     .TextMatrix(i, 1) = .TextMatrix(i + 1, 1)
                     .TextMatrix(i, 2) = .TextMatrix(i + 1, 2)
                     .TextMatrix(i, 3) = .TextMatrix(i + 1, 3)
                     .TextMatrix(i, 4) = .TextMatrix(i + 1, 4)
                     .TextMatrix(i, 5) = .TextMatrix(i + 1, 5)
+                    
+                  
+            Next i
+        End If
+
+        If MsgBox("Are you sure to void this item ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+             For i = .Row To .Rows - 2
+                    .TextMatrix(i, 0) = .TextMatrix(i + 1, 0)
+                    .TextMatrix(i, 1) = .TextMatrix(i + 1, 1)
+                    .TextMatrix(i, 2) = .TextMatrix(i + 1, 2)
+                    .TextMatrix(i, 3) = .TextMatrix(i + 1, 3)
+                    .TextMatrix(i, 4) = .TextMatrix(i + 1, 4)
+                    .TextMatrix(i, 5) = .TextMatrix(i + 1, 5)
+                    
                   
             Next i
             
+            
+       
+            
             .Rows = .Rows - 1
             
+            End If
             End If
             .RowSel = 0
             Call psubCountTotal
@@ -650,20 +672,23 @@ Dim objData As Object
                          If chkGrooming.Value = 1 Then
                           .TextMatrix(.Rows - 1, 2) = "-"
                           .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(2).Value), 0, objData.Fields(2).Value)
+                           .TextMatrix(.Rows - 1, 5) = Val(txtQTY.Text) * IIf(IsNull(objData.Fields(2).Value), 0, Val(objData.Fields(2).Value))
                          Else
-                         .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(7).Value), "", objData.Fields(7).Value)
-                          .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(8).Value), 0, Val(objData.Fields(8).Value))
+                         .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(8).Value), "", objData.Fields(8).Value)
+                          .TextMatrix(.Rows - 1, 4) = IIf(IsNull(objData.Fields(9).Value), 0, Val(objData.Fields(9).Value))
+                           .TextMatrix(.Rows - 1, 5) = Val(txtQTY.Text) * IIf(IsNull(objData.Fields(9).Value), 0, Val(objData.Fields(9).Value))
                          End If
-                        .TextMatrix(.Rows - 1, 5) = Val(txtQTY.Text) * IIf(IsNull(objData.Fields(8).Value), 0, Val(objData.Fields(8).Value))
+                       
                         
                     End With
                     txtQTY.Text = ""
                     cboItem.Text = ""
-                         Call psubCountTotal
+                     
                 End If
+                        Call psubCountTotal
            
             Else
-                MsgBox "Stock not fullfil quantity needs.", vbCritical, SystemTitle
+                MsgBox "Insufficient stock.", vbCritical, SystemTitle
                 txtQTY.SetFocus
             End If
      
@@ -689,6 +714,11 @@ Dim intTotalQTY, intTotalPrice, intTotalAll As Double
   txtTotalAll.Text = intTotalAll
   txtTotalPrice.Text = intTotalPrice
   txtPrice.Text = txtTotalAll
+  If Val(txtCash.Text) <> 0 Then
+ txtChange.Text = Val(txtCash.Text) - Val(txtPrice.Text)
+ Else
+    txtChange.Text = 0
+ End If
   
 End Sub
 Private Function pfBlnAddQTY(objData As Object) As Boolean
@@ -696,6 +726,7 @@ Private Function pfBlnAddQTY(objData As Object) As Boolean
         For i = 1 To .Rows - 1
             If .TextMatrix(i, 0) = objData.Fields(0).Value Then
              .TextMatrix(i, 3) = Val(.TextMatrix(i, 3)) + Val(txtQTY.Text)
+              .TextMatrix(i, 5) = Val(.TextMatrix(i, 4)) * Val(.TextMatrix(i, 3))
              pfBlnAddQTY = True
             End If
         Next i

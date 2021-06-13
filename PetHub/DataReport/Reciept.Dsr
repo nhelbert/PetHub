@@ -36,8 +36,6 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
       BeginProperty Item0 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
          Name            =   "txtSample"
-         Object.Left            =   567
-         Object.Top             =   567
          Object.Width           =   1440
          Object.Height          =   240
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -55,7 +53,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
       EndProperty

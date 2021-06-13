@@ -14,7 +14,6 @@ Begin VB.Form F_MainMenu
    ScaleHeight     =   7560
    ScaleWidth      =   9915
    StartUpPosition =   2  'CenterScreen
-   WindowState     =   2  'Maximized
    Begin OsenXPCntrl.OsenXPButton cmdMain 
       Height          =   2505
       Index           =   0
@@ -249,14 +248,6 @@ Begin VB.Form F_MainMenu
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
-   Begin VB.Image Image1 
-      Height          =   7575
-      Left            =   0
-      Picture         =   "F_MainMenu.frx":170E
-      Stretch         =   -1  'True
-      Top             =   0
-      Width           =   9915
-   End
 End
 Attribute VB_Name = "F_MainMenu"
 Attribute VB_GlobalNameSpace = False
@@ -284,9 +275,18 @@ Private Sub cmdMain_Click(Index As Integer)
     End Select
 End Sub
 
+Private Sub Form_Load()
+    If objUserData.Fields(4).Value = 1 Then
+    
+    cmdMain(0).Enabled = False
+    cmdMain(2).Enabled = False
+    cmdMain(4).Enabled = False
+    End If
+End Sub
+
 Private Sub Form_Unload(Cancel As Integer)
   If MsgBox("Are you sure you want to Logout ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
-  Call psubUpdateActivityLogs(objUserData.Fields(0).Value, False)
+  Call psubUpdateActivityLogs(objUserData.Fields(1).Value, False)
     F_LogIn.Show
   Else
     Cancel = 1
