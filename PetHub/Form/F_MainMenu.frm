@@ -175,12 +175,12 @@ Begin VB.Form F_MainMenu
       Index           =   4
       Left            =   3780
       TabIndex        =   4
-      Top             =   3900
+      Top             =   3870
       Width           =   2505
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "UUSER RIGHTS"
+      TX              =   "&USER RIGHTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"

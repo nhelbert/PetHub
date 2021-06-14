@@ -28,7 +28,7 @@ Begin VB.Form F_Menu
          Shortcut        =   ^U
       End
       Begin VB.Menu cmdQuestion 
-         Caption         =   "&UserQuestion"
+         Caption         =   "&User Question"
          Shortcut        =   ^Q
       End
    End
