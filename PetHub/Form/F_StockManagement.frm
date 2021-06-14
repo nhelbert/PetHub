@@ -48,7 +48,7 @@ Begin VB.Form F_StockManagement
       Left            =   8910
       TabIndex        =   1
       Top             =   180
-      Width           =   3330
+      Width           =   5895
    End
    Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
       Height          =   6090
@@ -65,49 +65,10 @@ Begin VB.Form F_StockManagement
       SelectionMode   =   1
       AllowUserResizing=   1
    End
-   Begin OsenXPCntrl.OsenXPButton cmdPrint 
-      Height          =   495
-      Left            =   12780
-      TabIndex        =   4
-      Top             =   90
-      Width           =   1995
-      _ExtentX        =   3519
-      _ExtentY        =   873
-      BTYPE           =   4
-      TX              =   "&Print"
-      ENAB            =   -1  'True
-      BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Verdana"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      COLTYPE         =   1
-      FOCUSR          =   -1  'True
-      BCOL            =   16777215
-      BCOLO           =   16777215
-      FCOL            =   0
-      FCOLO           =   16711680
-      MCOL            =   12632256
-      MPTR            =   0
-      MICON           =   "F_StockManagement.frx":10CA
-      PICN            =   "F_StockManagement.frx":10E6
-      UMCOL           =   -1  'True
-      SOFT            =   0   'False
-      PICPOS          =   0
-      NGREY           =   0   'False
-      FX              =   0
-      HAND            =   0   'False
-      CHECK           =   0   'False
-      VALUE           =   0   'False
-   End
    Begin OsenXPCntrl.OsenXPButton cmdAdd 
       Height          =   495
       Left            =   12780
-      TabIndex        =   6
+      TabIndex        =   5
       Top             =   6885
       Width           =   1995
       _ExtentX        =   3519
@@ -132,7 +93,7 @@ Begin VB.Form F_StockManagement
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_StockManagement.frx":1682
+      MICON           =   "F_StockManagement.frx":10CA
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -157,7 +118,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   6930
-      TabIndex        =   15
+      TabIndex        =   14
       Top             =   6930
       Width           =   465
    End
@@ -176,7 +137,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   9375
-      TabIndex        =   14
+      TabIndex        =   13
       Top             =   6930
       Width           =   1500
    End
@@ -195,7 +156,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   8895
-      TabIndex        =   13
+      TabIndex        =   12
       Top             =   6930
       Width           =   465
    End
@@ -214,7 +175,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   7380
-      TabIndex        =   12
+      TabIndex        =   11
       Top             =   6930
       Width           =   1500
    End
@@ -233,7 +194,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   5430
-      TabIndex        =   11
+      TabIndex        =   10
       Top             =   6930
       Width           =   1500
    End
@@ -252,7 +213,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   4950
-      TabIndex        =   10
+      TabIndex        =   9
       Top             =   6930
       Width           =   465
    End
@@ -271,7 +232,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   3435
-      TabIndex        =   9
+      TabIndex        =   8
       Top             =   6930
       Width           =   1500
    End
@@ -290,7 +251,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   2970
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   6930
       Width           =   465
    End
@@ -309,7 +270,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   135
-      TabIndex        =   7
+      TabIndex        =   6
       Top             =   6930
       Width           =   2805
    End
@@ -328,7 +289,7 @@ Begin VB.Form F_StockManagement
       EndProperty
       Height          =   345
       Left            =   135
-      TabIndex        =   5
+      TabIndex        =   4
       Top             =   180
       Width           =   2805
    End
@@ -354,7 +315,7 @@ Begin VB.Form F_StockManagement
    Begin VB.Image Image1 
       Height          =   7575
       Left            =   0
-      Picture         =   "F_StockManagement.frx":169E
+      Picture         =   "F_StockManagement.frx":10E6
       Stretch         =   -1  'True
       Top             =   0
       Width           =   14910
