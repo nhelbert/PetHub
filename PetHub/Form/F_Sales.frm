@@ -14,7 +14,7 @@ Begin VB.Form F_Sales
    MinButton       =   0   'False
    ScaleHeight     =   7560
    ScaleWidth      =   12405
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox chkGrooming 
       Caption         =   "Grooming"
       BeginProperty Font 

@@ -14,7 +14,7 @@ Begin VB.Form F_Grooming
    MinButton       =   0   'False
    ScaleHeight     =   6060
    ScaleWidth      =   5910
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtSearch 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat

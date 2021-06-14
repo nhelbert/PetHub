@@ -14,7 +14,7 @@ Begin VB.Form F_ForgetPassword
    MinButton       =   0   'False
    ScaleHeight     =   4935
    ScaleWidth      =   5910
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.ComboBox cboQuestion1 
       Appearance      =   0  'Flat
       BeginProperty Font 

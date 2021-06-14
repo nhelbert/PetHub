@@ -24,7 +24,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "GROOMING"
+      TX              =   "&GROOMING"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"
@@ -63,7 +63,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "SALES"
+      TX              =   "&SALES"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"
@@ -102,7 +102,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "STOCK MANAGEMENT"
+      TX              =   "STOCK &MANAGEMENT"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"
@@ -141,7 +141,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "REPORTS"
+      TX              =   "&REPORTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"
@@ -180,7 +180,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "USER RIGHTS"
+      TX              =   "UUSER RIGHTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"
@@ -258,7 +258,7 @@ Begin VB.Form F_MainMenu
       _ExtentX        =   4419
       _ExtentY        =   4419
       BTYPE           =   2
-      TX              =   "MAINTENANCE"
+      TX              =   "M&AINTENANCE"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MV Boli"
@@ -330,6 +330,7 @@ Private Sub Form_Load()
     cmdMain(0).Enabled = False
     cmdMain(2).Enabled = False
     cmdMain(4).Enabled = False
+    cmdMain(5).Enabled = False
     End If
 End Sub
 

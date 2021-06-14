@@ -14,7 +14,7 @@ Begin VB.Form F_StockManagement
    MinButton       =   0   'False
    ScaleHeight     =   7560
    ScaleWidth      =   14910
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.ComboBox cboStatus 
       Appearance      =   0  'Flat
       BeginProperty Font 

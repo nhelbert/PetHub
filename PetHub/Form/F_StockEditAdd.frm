@@ -14,7 +14,7 @@ Begin VB.Form F_StockEditAdd
    MinButton       =   0   'False
    ScaleHeight     =   6060
    ScaleWidth      =   5910
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin MSComCtl2.DTPicker dtExDate 
       Height          =   375
       Left            =   2430
@@ -24,7 +24,7 @@ Begin VB.Form F_StockEditAdd
       _ExtentX        =   5874
       _ExtentY        =   661
       _Version        =   393216
-      Format          =   157614081
+      Format          =   158597121
       CurrentDate     =   44360
    End
    Begin VB.ComboBox cboProduct 

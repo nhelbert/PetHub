@@ -16,7 +16,7 @@ Begin VB.Form F_Reports
    ScaleHeight     =   7410
    ScaleWidth      =   9765
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin MSComCtl2.DTPicker dtFrom 
       Height          =   330
       Left            =   1665
@@ -26,7 +26,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   327680001
+      Format          =   122355713
       CurrentDate     =   44360
    End
    Begin VB.TextBox txtIncome 
@@ -161,7 +161,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   327745537
+      Format          =   158597121
       CurrentDate     =   44360
    End
    Begin VB.Label Label5 

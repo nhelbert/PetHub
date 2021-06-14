@@ -13,7 +13,7 @@ Begin VB.Form F_UserLogs
    MinButton       =   0   'False
    ScaleHeight     =   5565
    ScaleWidth      =   5910
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtSearch 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat

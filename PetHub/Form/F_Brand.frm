@@ -14,7 +14,7 @@ Begin VB.Form F_Brand
    MinButton       =   0   'False
    ScaleHeight     =   6060
    ScaleWidth      =   5910
-   StartUpPosition =   1  'CenterOwner
+   StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtName 
       Appearance      =   0  'Flat
       BeginProperty Font 
