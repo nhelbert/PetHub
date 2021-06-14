@@ -1,22 +1,21 @@
 VERSION 5.00
 Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1 
-   Bindings        =   "DT_Reciept1.dsx":0000
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Reciept"
    ClientHeight    =   8415
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   7665
-   Icon            =   "DT_Reciept1.dsx":001C
+   ClientWidth     =   8865
+   Icon            =   "DT_Reciept1.dsx":0000
    MaxButton       =   0   'False
    MinButton       =   0   'False
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
-   _ExtentX        =   13520
+   _ExtentX        =   15637
    _ExtentY        =   14843
    _Version        =   393216
    _DesignerVersion=   100684101
-   ReportWidth     =   8322
+   ReportWidth     =   7755
    BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
       Name            =   "Arial"
       Size            =   8.25
@@ -34,7 +33,6 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
    BottomMargin    =   100
    _Settings       =   6
    Title           =   "POSReciept"
-   DataMember      =   "Reciept1"
    NumSections     =   3
    SectionCode0    =   2
    BeginProperty Section0 {1C13A8E0-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -46,10 +44,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
       BeginProperty Item0 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
          Name            =   "Label2"
-         Object.Left            =   2985
-         Object.Top             =   210
-         Object.Width           =   1785
-         Object.Height          =   345
+         Object.Left            =   2134
+         Object.Width           =   3486
+         Object.Height          =   912
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   14.25
@@ -59,7 +56,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Object.Caption         =   "REPORTS"
+         Object.Caption         =   "PetHub Sales and Inventory System"
          Alignment       =   2
       EndProperty
       ItemType1       =   5
@@ -75,9 +72,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
          _Version        =   393216
          Name            =   "Label3"
          Object.Left            =   2557
-         Object.Top             =   630
+         Object.Top             =   750
          Object.Width           =   2640
-         Object.Height          =   585
+         Object.Height          =   600
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   11.25
@@ -157,7 +154,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
          Object.Height          =   225
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
-            Size            =   6.75
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -177,7 +174,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
          Object.Height          =   225
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
-            Size            =   6.75
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -197,7 +194,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
          Object.Height          =   225
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
-            Size            =   6.75
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -217,7 +214,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
          Object.Height          =   225
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
-            Size            =   6.75
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -237,7 +234,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
          Object.Height          =   225
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
-            Size            =   6.75
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -259,15 +256,15 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
    BeginProperty Section1 {1C13A8E0-A0B6-11D0-848E-00A0C90DC8A9} 
       _Version        =   393216
       Name            =   "Section1"
-      Object.Height          =   360
+      Object.Height          =   270
       NumControls     =   5
       ItemType0       =   4
       BeginProperty Item0 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
-         Name            =   "InvoiceNo"
-         Object.Left            =   100
-         Object.Top             =   50
-         Object.Width           =   1750
+         Name            =   "txtName"
+         Object.Left            =   105
+         Object.Top             =   30
+         Object.Width           =   1740
          Object.Height          =   240
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
@@ -289,14 +286,13 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept1"
       EndProperty
       ItemType1       =   4
       BeginProperty Item1 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
          Name            =   "Text1"
          Object.Left            =   2050
-         Object.Top             =   50
+         Object.Top             =   30
          Object.Width           =   1000
          Object.Height          =   240
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -308,7 +304,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "Unit"
+         DataField       =   "unit"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -319,15 +315,14 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept1"
       EndProperty
       ItemType2       =   4
       BeginProperty Item2 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
-         Name            =   "Text2"
+         Name            =   "txtQTY"
          Object.Left            =   3250
-         Object.Top             =   50
-         Object.Width           =   1000
+         Object.Top             =   30
+         Object.Width           =   1005
          Object.Height          =   240
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
@@ -349,14 +344,13 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept1"
       EndProperty
       ItemType3       =   4
       BeginProperty Item3 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
-         Name            =   "Text3"
+         Name            =   "txtPrice"
          Object.Left            =   4450
-         Object.Top             =   50
+         Object.Top             =   30
          Object.Width           =   1500
          Object.Height          =   240
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -379,14 +373,13 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept1"
       EndProperty
       ItemType4       =   4
       BeginProperty Item4 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
          _Version        =   393216
-         Name            =   "Text4"
+         Name            =   "txtTotalPrice"
          Object.Left            =   6150
-         Object.Top             =   50
+         Object.Top             =   30
          Object.Width           =   1500
          Object.Height          =   240
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -409,14 +402,159 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept1"
       EndProperty
    EndProperty
    SectionCode2    =   7
    BeginProperty Section2 {1C13A8E0-A0B6-11D0-848E-00A0C90DC8A9} 
       _Version        =   393216
       Name            =   "Section3"
-      NumControls     =   0
+      Object.Height          =   2667
+      NumControls     =   8
+      ItemType0       =   3
+      BeginProperty Item0 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "Label5"
+         Object.Left            =   1332
+         Object.Top             =   210
+         Object.Width           =   3150
+         Object.Height          =   315
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "TOTAL ================"
+      EndProperty
+      ItemType1       =   3
+      BeginProperty Item1 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "lblTotal"
+         Object.Left            =   4617
+         Object.Top             =   195
+         Object.Width           =   1785
+         Object.Height          =   345
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "REPORTS"
+         Alignment       =   1
+      EndProperty
+      ItemType2       =   3
+      BeginProperty Item2 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "Label6"
+         Object.Left            =   1332
+         Object.Top             =   585
+         Object.Width           =   3150
+         Object.Height          =   315
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "Cash    ================"
+      EndProperty
+      ItemType3       =   3
+      BeginProperty Item3 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "lblCash"
+         Object.Left            =   4617
+         Object.Top             =   570
+         Object.Width           =   1785
+         Object.Height          =   345
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial Narrow"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "REPORTS"
+         Alignment       =   1
+      EndProperty
+      ItemType4       =   3
+      BeginProperty Item4 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "Label11"
+         Object.Left            =   1332
+         Object.Top             =   1035
+         Object.Width           =   3150
+         Object.Height          =   315
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "Change ================"
+      EndProperty
+      ItemType5       =   3
+      BeginProperty Item5 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "lblChange"
+         Object.Left            =   4602
+         Object.Top             =   1020
+         Object.Width           =   1785
+         Object.Height          =   345
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "REPORTS"
+         Alignment       =   1
+      EndProperty
+      ItemType6       =   5
+      BeginProperty Item6 {1C13A8E3-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "Line1"
+         Object.Top             =   1533
+         Object.Width           =   7755
+         Object.BorderStyle     =   2
+      EndProperty
+      ItemType7       =   3
+      BeginProperty Item7 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
+         _Version        =   393216
+         Name            =   "Label10"
+         Object.Left            =   1087
+         Object.Top             =   1695
+         Object.Width           =   5580
+         Object.Height          =   325
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Object.Caption         =   "Thank you and come  again!"
+         Alignment       =   2
+      EndProperty
    EndProperty
 End
 Attribute VB_Name = "DT_Reciept1"

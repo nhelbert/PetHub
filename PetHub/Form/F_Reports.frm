@@ -13,6 +13,7 @@ Begin VB.Form F_Reports
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
+   OLEDropMode     =   1  'Manual
    ScaleHeight     =   7410
    ScaleWidth      =   9765
    ShowInTaskbar   =   0   'False
@@ -26,7 +27,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   122355713
+      Format          =   74579969
       CurrentDate     =   44360
    End
    Begin VB.TextBox txtIncome 
@@ -161,7 +162,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   158597121
+      Format          =   74645505
       CurrentDate     =   44360
    End
    Begin VB.Label Label5 
@@ -339,10 +340,14 @@ Private Sub cmdPrint_Click()
     strSQL = strSQL & " SELECT * From H_sales"
     strSQL = strSQL & " where DATE_FORMAT(transDate,'%Y%m%d') between DATE_FORMAT(" & pfstrQuote(dtFrom.Value) & ",'%Y%m%d')"
     strSQL = strSQL & " and DATE_FORMAT(" & pfstrQuote(dtTo.Value) & ",'%Y%m%d')"
-    DT_Datasource.Commands("Reciept").CommandText = strSQL
-    
+    'DT_Datasource.Commands("Reciept").CommandText = strSQL
+   Set DT_Reciept.DataSource = clsConnect.GetRecordSet(strSQL)
     DT_Reciept.Sections(1).Controls("lblFrom").Caption = Format(dtFrom.Value, "YYYY-MM-DD")
     DT_Reciept.Sections(1).Controls("lblTo").Caption = Format(dtTo.Value, "YYYY-MM-DD")
+'
+'    DT_Reciept.Sections("Section5").Controls("lblTotal1").Caption = txtTotalSales.Text
+'    DT_Reciept.Sections("Section5").Controls("lblCapital1").Caption = txtCapital.Text
+'    DT_Reciept.Sections("Section5").Controls("lblIncome1").Caption = txtIncome.Text
 
     DT_Reciept.Sections("Section3").Controls("lblTotal").Caption = txtTotalSales.Text
     DT_Reciept.Sections("Section3").Controls("lblCapital").Caption = txtCapital.Text
@@ -388,20 +393,20 @@ Private Sub MSFlexGrid1_Click()
     With MSFlexGrid1
         If .RowSel > 0 And .Col = 0 Then
     strSQL = ""
-    strSQL = strSQL & " SELECT CASE when B.Name IS NULL  THEN C.Description ELSE B.Name END AS name ,b.Unit,a.QTY,a.Price,a.TotalPrice FROM sales a"
+    strSQL = strSQL & " SELECT CASE when B.Name IS NULL  THEN C.Description ELSE B.Name END AS Name ,b.Unit,a.QTY,a.Price,a.TotalPrice FROM sales a"
     strSQL = strSQL & " LEFT JOIN stocks b ON a.ItemId=b.ItemId"
     strSQL = strSQL & " LEFT JOIN grooming c ON a.ItemId=c.GroomID"
     strSQL = strSQL & " WHERE a.InvoiceNo=" & pfstrQuote(.TextMatrix(.RowSel, 1))
     
-    DT_Datasource.Commands("Reciept1").CommandText = strSQL
-    
+    'DT_Datasource.Commands("Reciept1").CommandText = strSQL
+    Set DT_Reciept1.DataSource = clsConnect.GetRecordSet(strSQL)
     DT_Reciept1.Sections("Section2").Controls("lblTransactionDate").Caption = "Date. : " & .TextMatrix(.RowSel, 6)
     DT_Reciept1.Sections("Section2").Controls("lblCashier").Caption = "Cashier. : " & .TextMatrix(.RowSel, 2)
     DT_Reciept1.Sections("Section2").Controls("lblInvoice").Caption = "Invoice No. : " & .TextMatrix(.RowSel, 1)
 
-'    DT_Reciept.Sections("Section3").Controls("lblTotal").Caption = txtTotalSales.Text
-'    DT_Reciept.Sections("Section3").Controls("lblCapital").Caption = txtCapital.Text
-'    DT_Reciept.Sections("Section3").Controls("lblIncome").Caption = txtIncome.Text
+    DT_Reciept1.Sections("Section3").Controls("lblTotal").Caption = .TextMatrix(.RowSel, 3)
+    DT_Reciept1.Sections("Section3").Controls("lblCash").Caption = .TextMatrix(.RowSel, 4)
+    DT_Reciept1.Sections("Section3").Controls("lblChange").Caption = .TextMatrix(.RowSel, 5)
     If MsgBox("Print Preview ?", vbQuestion + vbYesNo, SystemTitle) = vbYes Then
       DT_Reciept1.Show vbModal
     Else

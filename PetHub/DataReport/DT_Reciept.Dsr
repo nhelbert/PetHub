@@ -1,13 +1,12 @@
 VERSION 5.00
 Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept 
-   Bindings        =   "DT_Reciept.dsx":0000
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Reports"
    ClientHeight    =   6630
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   11730
-   Icon            =   "DT_Reciept.dsx":001C
+   Icon            =   "DT_Reciept.dsx":0000
    MaxButton       =   0   'False
    MinButton       =   0   'False
    StartUpPosition =   1  'CenterOwner
@@ -16,7 +15,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
    _ExtentY        =   11695
    _Version        =   393216
    _DesignerVersion=   100684101
-   ReportWidth     =   11250
+   ReportWidth     =   11292
    BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
       Name            =   "Arial"
       Size            =   8.25
@@ -34,7 +33,6 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
    BottomMargin    =   50
    _Settings       =   6
    Title           =   "POSReports"
-   DataMember      =   "Reciept"
    NumSections     =   3
    SectionCode0    =   2
    BeginProperty Section0 {1C13A8E0-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -311,7 +309,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
    BeginProperty Section1 {1C13A8E0-A0B6-11D0-848E-00A0C90DC8A9} 
       _Version        =   393216
       Name            =   "Section1"
-      Object.Height          =   363
+      Object.Height          =   360
       NumControls     =   12
       ItemType0       =   6
       BeginProperty Item0 {1C13A8E4-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -346,10 +344,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept"
       EndProperty
       ItemType2       =   4
       BeginProperty Item2 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -375,10 +372,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept"
       EndProperty
       ItemType3       =   5
       BeginProperty Item3 {1C13A8E3-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -419,10 +415,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept"
       EndProperty
       ItemType6       =   5
       BeginProperty Item6 {1C13A8E3-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -470,10 +465,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept"
       EndProperty
       ItemType10      =   4
       BeginProperty Item10 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -500,10 +494,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept"
       EndProperty
       ItemType11      =   4
       BeginProperty Item11 {1C13A8E2-A0B6-11D0-848E-00A0C90DC8A9} 
@@ -530,10 +523,9 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
-         DataMember      =   "Reciept"
       EndProperty
    EndProperty
    SectionCode2    =   7

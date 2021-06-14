@@ -16,6 +16,7 @@ Begin VB.Form F_Sales
    ScaleWidth      =   12405
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox chkGrooming 
+      BackColor       =   &H80000018&
       Caption         =   "Grooming"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
@@ -533,13 +534,18 @@ Private Sub psubSubmitItems()
                 strSQL = strSQL & " LEFT JOIN stocks b ON a.ItemId=b.ItemId"
                 strSQL = strSQL & " LEFT JOIN grooming c ON a.ItemId=c.GroomID"
                 strSQL = strSQL & " WHERE a.InvoiceNo=" & pfstrQuote(strInvoice)
-                
-                DT_Datasource.Commands("Reciept1").CommandText = strSQL
+             
+                 Set DT_Reciept1.DataSource = clsConnect.GetRecordSet(strSQL)
                 
                 DT_Reciept1.Sections("Section2").Controls("lblTransactionDate").Caption = "Date. : " & objSelect.Fields(5).Value
                 DT_Reciept1.Sections("Section2").Controls("lblCashier").Caption = "Cashier. : " & objSelect.Fields(4).Value
                 DT_Reciept1.Sections("Section2").Controls("lblInvoice").Caption = "Invoice No. : " & objSelect.Fields(0).Value
-            
+                
+                   
+
+    DT_Reciept1.Sections("Section3").Controls("lblTotal").Caption = txtPrice.Text
+    DT_Reciept1.Sections("Section3").Controls("lblCash").Caption = txtCash.Text
+    DT_Reciept1.Sections("Section3").Controls("lblChange").Caption = txtChange.Text
                 If MsgBox("Print Preview ?", vbQuestion + vbYesNo, SystemTitle) = vbYes Then
                   DT_Reciept1.Show vbModal
                 Else
