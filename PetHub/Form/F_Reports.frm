@@ -26,7 +26,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   134283265
+      Format          =   99745793
       CurrentDate     =   44360
    End
    Begin VB.TextBox txtIncome 
@@ -161,7 +161,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   134283265
+      Format          =   99745793
       CurrentDate     =   44360
    End
    Begin VB.Label Label5 
@@ -284,6 +284,10 @@ Private Sub psubLoadFlexGrid(objData As Object)
         Do While Not objData.EOF
 
                 .Rows = .Rows + 1
+                .TextMatrix(.Rows - 1, 0) = "PRINT"
+                .Row = .Rows - 1
+                .Col = 0
+                .CellTextStyle = flexTextRaised
                 .TextMatrix(.Rows - 1, 1) = IIf(IsNull(objData.Fields(0).Value), "", objData.Fields(0).Value)
                 .TextMatrix(.Rows - 1, 2) = IIf(IsNull(objData.Fields(4).Value), "", objData.Fields(4).Value)
                 .TextMatrix(.Rows - 1, 3) = IIf(IsNull(objData.Fields(1).Value), "", objData.Fields(1).Value)
@@ -323,20 +327,36 @@ Dim objTotal As Object
 End Sub
 
 Private Sub cmdPrint_Click()
+    strSQL = ""
+    strSQL = strSQL & " SELECT * From H_sales"
+    strSQL = strSQL & " where DATE_FORMAT(transDate,'%Y%m%d') between DATE_FORMAT(" & pfstrQuote(dtFrom.Value) & ",'%Y%m%d')"
+    strSQL = strSQL & " and DATE_FORMAT(" & pfstrQuote(dtTo.Value) & ",'%Y%m%d')"
+    DT_Datasource.Commands("Reciept").CommandText = strSQL
+    
+    DT_Reciept.Sections(1).Controls("lblFrom").Caption = Format(dtFrom.Value, "YYYY-MM-DD")
+    DT_Reciept.Sections(1).Controls("lblTo").Caption = Format(dtTo.Value, "YYYY-MM-DD")
 
-    DT_Reciept.Show vbModal
+    DT_Reciept.Sections("Section3").Controls("lblTotal").Caption = txtTotalSales.Text
+    DT_Reciept.Sections("Section3").Controls("lblCapital").Caption = txtCapital.Text
+    DT_Reciept.Sections("Section3").Controls("lblIncome").Caption = txtIncome.Text
+    If MsgBox("Print Preview ?", vbQuestion + vbYesNo, SystemTitle) = vbYes Then
+      DT_Reciept.Show vbModal
+    Else
+        DT_Reciept.PrintReport False
+    End If
+    Set DT_Datasource = Nothing
+  
 End Sub
 
 Private Sub psubFilter()
    Dim objData As Object
-        strSQL = ""
+    strSQL = ""
     strSQL = strSQL & " SELECT * From H_sales"
     strSQL = strSQL & " where DATE_FORMAT(transDate,'%Y%m%d') between DATE_FORMAT(" & pfstrQuote(dtFrom.Value) & ",'%Y%m%d')"
     strSQL = strSQL & " and DATE_FORMAT(" & pfstrQuote(dtTo.Value) & ",'%Y%m%d')"
     Set objData = clsConnect.GetRecordSet(strSQL)
   
   Call psubLoadFlexGrid(objData)
-  DT_Reciept.DataSource = objData
   Call psubGetTotals
 End Sub
 
@@ -356,3 +376,30 @@ Private Sub Form_Load()
 
 End Sub
 
+Private Sub MSFlexGrid1_Click()
+    With MSFlexGrid1
+        If .RowSel > 0 And .Col = 0 Then
+    strSQL = ""
+    strSQL = strSQL & " SELECT CASE when B.Name IS NULL  THEN C.Description ELSE B.Name END AS name ,b.Unit,a.QTY,a.Price,a.TotalPrice FROM sales a"
+    strSQL = strSQL & " LEFT JOIN stocks b ON a.ItemId=b.ItemId"
+    strSQL = strSQL & " LEFT JOIN grooming c ON a.ItemId=c.GroomID"
+    strSQL = strSQL & " WHERE a.InvoiceNo=" & pfstrQuote(.TextMatrix(.RowSel, 1))
+    
+    DT_Datasource.Commands("Reciept1").CommandText = strSQL
+    
+    DT_Reciept1.Sections("Section2").Controls("lblTransactionDate").Caption = "Date. : " & .TextMatrix(.RowSel, 6)
+    DT_Reciept1.Sections("Section2").Controls("lblCashier").Caption = "Cashier. : " & .TextMatrix(.RowSel, 2)
+    DT_Reciept1.Sections("Section2").Controls("lblInvoice").Caption = "Invoice No. : " & .TextMatrix(.RowSel, 1)
+
+'    DT_Reciept.Sections("Section3").Controls("lblTotal").Caption = txtTotalSales.Text
+'    DT_Reciept.Sections("Section3").Controls("lblCapital").Caption = txtCapital.Text
+'    DT_Reciept.Sections("Section3").Controls("lblIncome").Caption = txtIncome.Text
+    If MsgBox("Print Preview ?", vbQuestion + vbYesNo, SystemTitle) = vbYes Then
+      DT_Reciept1.Show vbModal
+    Else
+        DT_Reciept1.PrintReport False
+    End If
+    Set DT_Datasource = Nothing
+        End If
+    End With
+End Sub

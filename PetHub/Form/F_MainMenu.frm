@@ -134,7 +134,7 @@ Begin VB.Form F_MainMenu
    Begin OsenXPCntrl.OsenXPButton cmdMain 
       Height          =   2505
       Index           =   3
-      Left            =   1935
+      Left            =   765
       TabIndex        =   3
       Top             =   3870
       Width           =   2505
@@ -173,7 +173,7 @@ Begin VB.Form F_MainMenu
    Begin OsenXPCntrl.OsenXPButton cmdMain 
       Height          =   2505
       Index           =   4
-      Left            =   5445
+      Left            =   3780
       TabIndex        =   4
       Top             =   3900
       Width           =   2505
@@ -248,6 +248,45 @@ Begin VB.Form F_MainMenu
       CHECK           =   0   'False
       VALUE           =   0   'False
    End
+   Begin OsenXPCntrl.OsenXPButton cmdMain 
+      Height          =   2505
+      Index           =   5
+      Left            =   6660
+      TabIndex        =   6
+      Top             =   3915
+      Width           =   2505
+      _ExtentX        =   4419
+      _ExtentY        =   4419
+      BTYPE           =   2
+      TX              =   "MAINTENANCE"
+      ENAB            =   -1  'True
+      BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      COLTYPE         =   1
+      FOCUSR          =   -1  'True
+      BCOL            =   15790320
+      BCOLO           =   15790320
+      FCOL            =   0
+      FCOLO           =   0
+      MCOL            =   12632256
+      MPTR            =   0
+      MICON           =   "F_MainMenu.frx":170E
+      UMCOL           =   -1  'True
+      SOFT            =   0   'False
+      PICPOS          =   0
+      NGREY           =   0   'False
+      FX              =   0
+      HAND            =   0   'False
+      CHECK           =   0   'False
+      VALUE           =   0   'False
+   End
 End
 Attribute VB_Name = "F_MainMenu"
 Attribute VB_GlobalNameSpace = False
@@ -272,6 +311,8 @@ Private Sub cmdMain_Click(Index As Integer)
         F_Reports.Show vbModal
     Case 4
         F_UserRights.Show vbModal
+     Case 5
+       PopupMenu F_Menu.cmdMaintenance
     End Select
 End Sub
 

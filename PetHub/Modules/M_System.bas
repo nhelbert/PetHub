@@ -6,8 +6,8 @@ Option Explicit
 
 Public clsConnect As New C_MySqlConnect
 
-Public Const SystemTitle = "PetHub Sales and Inventory System"
-'Public Const SystemTitle = "SCAD Warehouse System"
+'Public Const SystemTitle = "PetHub Sales and Inventory System"
+Public Const SystemTitle = "SCAD Warehouse System"
 Public strSQL As String
 Public objUserData As Object
 Sub Main()

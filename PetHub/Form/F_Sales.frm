@@ -515,6 +515,35 @@ Private Sub psubSubmitItems()
         clsConnect.DBConnect.Execute (strSQL)
         MsgBox "Sumbit successfully.", vbInformation, SystemTitle
         
+        Dim objSelect As Object
+        strSQL = ""
+        strSQL = strSQL & " Select * from h_sales where InvoiceNo=" & pfstrQuote(strInvoice)
+        Set objSelect = clsConnect.GetRecordSet(strSQL)
+        If Not objSelect.EOF Then
+                strSQL = ""
+                strSQL = strSQL & " SELECT CASE when B.Name IS NULL  THEN C.Description ELSE B.Name END AS name ,b.Unit,a.QTY,a.Price,a.TotalPrice FROM sales a"
+                strSQL = strSQL & " LEFT JOIN stocks b ON a.ItemId=b.ItemId"
+                strSQL = strSQL & " LEFT JOIN grooming c ON a.ItemId=c.GroomID"
+                strSQL = strSQL & " WHERE a.InvoiceNo=" & pfstrQuote(strInvoice)
+                
+                DT_Datasource.Commands("Reciept1").CommandText = strSQL
+                
+                DT_Reciept1.Sections("Section2").Controls("lblTransactionDate").Caption = "Date. : " & objSelect.Fields(5).Value
+                DT_Reciept1.Sections("Section2").Controls("lblCashier").Caption = "Cashier. : " & objSelect.Fields(4).Value
+                DT_Reciept1.Sections("Section2").Controls("lblInvoice").Caption = "Invoice No. : " & objSelect.Fields(0).Value
+            
+                If MsgBox("Print Preview ?", vbQuestion + vbYesNo, SystemTitle) = vbYes Then
+                  DT_Reciept1.Show vbModal
+                Else
+                    DT_Reciept1.PrintReport False
+                End If
+                Set DT_Datasource = Nothing
+        End If
+
+
+    
+
+        
         Call psubClearFlex
             
     End With
@@ -525,13 +554,12 @@ Private Sub cmdVoid_Click()
     With MSFlexGrid1
 If .RowSel <> 0 Then
         
-        If .TextMatrix(.RowSel, 3) > 1 Then
-        Else
-        
+        If Val(.TextMatrix(.RowSel, 3)) > 1 Then
         intQTY = InputBox("Please input void quantity", SystemTitle, 1)
-        .TextMatrix(.RowSel, 3) = Val(.TextMatrix(i, 3)) - Val(intQTY)
-        .TextMatrix(.RowSel, 5) = Val(.TextMatrix(i, 4)) * Val(.TextMatrix(i, 3))
-        If .TextMatrix(.RowSel, 3) <= 0 Then
+        .TextMatrix(.RowSel, 3) = Val(.TextMatrix(.RowSel, 3)) - Val(intQTY)
+        .TextMatrix(.RowSel, 5) = Val(.TextMatrix(.RowSel, 4)) * Val(.TextMatrix(.RowSel, 3))
+        
+        If Val(.TextMatrix(.RowSel, 3)) <= 0 Then
                  For i = .Row To .Rows - 2
                     .TextMatrix(i, 0) = .TextMatrix(i + 1, 0)
                     .TextMatrix(i, 1) = .TextMatrix(i + 1, 1)
@@ -542,7 +570,12 @@ If .RowSel <> 0 Then
                     
                   
             Next i
+                       .Rows = .Rows - 1
         End If
+        
+        Else
+        
+    
 
         If MsgBox("Are you sure to void this item ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
              For i = .Row To .Rows - 2
