@@ -286,7 +286,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
          DataMember      =   "Reciept1"
@@ -316,7 +316,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
          DataMember      =   "Reciept1"
@@ -346,7 +346,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
          DataMember      =   "Reciept1"
@@ -376,7 +376,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
          DataMember      =   "Reciept1"
@@ -406,7 +406,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   1041
+            LCID            =   13321
             SubFormatType   =   0
          EndProperty
          DataMember      =   "Reciept1"

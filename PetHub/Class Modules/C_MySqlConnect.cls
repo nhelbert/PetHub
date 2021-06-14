@@ -37,7 +37,7 @@ Set adoConnection = New ADODB.Connection
 
 With adoConnection
 .CursorLocation = adUseClient
-.ConnectionString = "DRIVER={MySQL ODBC 5.3 Unicode Driver};Server=10.169.140.27;Port=3306;Database=pointofsales;Uid=root"
+.ConnectionString = "DRIVER={MySQL ODBC 5.3 Unicode Driver};Server=localhost;Port=3306;Database=pointofsales;Uid=root"
 .Open
 End With
 

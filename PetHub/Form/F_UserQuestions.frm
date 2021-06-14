@@ -1,14 +1,14 @@
 VERSION 5.00
 Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "ponga.ocx"
 Object = "{5E9E78A0-531B-11CF-91F6-C2863C385E30}#1.0#0"; "Msflxgrd.ocx"
-Begin VB.Form F_Unit 
+Begin VB.Form F_UserQuestions 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "Unit"
+   Caption         =   "Questions"
    ClientHeight    =   6060
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   5910
-   Icon            =   "F_Unit.frx":0000
+   Icon            =   "F_UserQuestions.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -30,7 +30,7 @@ Begin VB.Form F_Unit
       Height          =   360
       Left            =   2445
       TabIndex        =   1
-      Top             =   180
+      Top             =   225
       Width           =   3330
    End
    Begin VB.TextBox txtName 
@@ -44,20 +44,21 @@ Begin VB.Form F_Unit
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   360
+      Height          =   810
       Left            =   2430
+      MultiLine       =   -1  'True
       TabIndex        =   0
-      Top             =   4770
+      Top             =   4500
       Width           =   3330
    End
    Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
-      Height          =   4065
+      Height          =   3750
       Left            =   135
       TabIndex        =   2
-      Top             =   630
+      Top             =   675
       Width           =   5640
       _ExtentX        =   9948
-      _ExtentY        =   7170
+      _ExtentY        =   6615
       _Version        =   393216
       FixedCols       =   0
       SelectionMode   =   1
@@ -67,7 +68,7 @@ Begin VB.Form F_Unit
       Height          =   495
       Left            =   4275
       TabIndex        =   3
-      Top             =   5400
+      Top             =   5445
       Width           =   1500
       _ExtentX        =   2646
       _ExtentY        =   873
@@ -91,7 +92,7 @@ Begin VB.Form F_Unit
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_Unit.frx":10CA
+      MICON           =   "F_UserQuestions.frx":10CA
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -105,7 +106,7 @@ Begin VB.Form F_Unit
       Height          =   495
       Left            =   2205
       TabIndex        =   4
-      Top             =   5415
+      Top             =   5460
       Width           =   1500
       _ExtentX        =   2646
       _ExtentY        =   873
@@ -129,7 +130,7 @@ Begin VB.Form F_Unit
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_Unit.frx":10E6
+      MICON           =   "F_UserQuestions.frx":10E6
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -143,7 +144,7 @@ Begin VB.Form F_Unit
       Height          =   495
       Left            =   135
       TabIndex        =   5
-      Top             =   5415
+      Top             =   5460
       Width           =   1500
       _ExtentX        =   2646
       _ExtentY        =   873
@@ -167,7 +168,7 @@ Begin VB.Form F_Unit
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_Unit.frx":1102
+      MICON           =   "F_UserQuestions.frx":1102
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -193,13 +194,13 @@ Begin VB.Form F_Unit
       Height          =   345
       Left            =   150
       TabIndex        =   7
-      Top             =   180
+      Top             =   225
       Width           =   2265
    End
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       BorderStyle     =   1  'Fixed Single
-      Caption         =   "Name :"
+      Caption         =   "Question :"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   9.75
@@ -212,19 +213,19 @@ Begin VB.Form F_Unit
       Height          =   345
       Left            =   135
       TabIndex        =   6
-      Top             =   4770
+      Top             =   4500
       Width           =   2265
    End
    Begin VB.Image Image1 
       Height          =   6090
       Left            =   0
-      Picture         =   "F_Unit.frx":111E
+      Picture         =   "F_UserQuestions.frx":111E
       Stretch         =   -1  'True
       Top             =   0
       Width           =   5910
    End
 End
-Attribute VB_Name = "F_Unit"
+Attribute VB_Name = "F_UserQuestions"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -250,14 +251,14 @@ Private Sub cmdDelete_Click()
 If intID = 0 Then
   Call psubClear
 Else
-     If MsgBox("Are you sure you want to delete this Unit ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+     If MsgBox("Are you sure you want to delete this question ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
         strSQL = ""
-        strSQL = strSQL & " delete from Unit"
+        strSQL = strSQL & " delete from userquestions"
         strSQL = strSQL & " Where id=" & intID
         
         clsConnect.DBConnect.Execute (strSQL)
-        MsgBox "Unit deleted successfully.", vbInformation, SystemTitle
+        MsgBox "Question deleted successfully.", vbInformation, SystemTitle
         Call psubClear
         Call psubGetData
      
@@ -268,17 +269,17 @@ End Sub
 Private Function pfBlnAlreadyExist(blnUpdate As Boolean) As Boolean
   Dim objAlreadyExist As Object
         strSQL = ""
-        strSQL = strSQL & " select * from  Unit where name =" & pfstrQuote(txtName.Text)
+        strSQL = strSQL & " select * from  userquestions where Question =" & pfstrQuote(txtName.Text)
         If blnUpdate Then
         
-        strSQL = strSQL & " and name <>" & pfstrQuote(strOldName)
+        strSQL = strSQL & " and Question <>" & pfstrQuote(strOldName)
         End If
         Set objAlreadyExist = clsConnect.GetRecordSet(strSQL)
         
         If Not objAlreadyExist.EOF Then
             pfBlnAlreadyExist = True
             txtName.SetFocus
-            MsgBox "Unit already exist.", vbCritical, SystemTitle
+            MsgBox "Question already exist.", vbCritical, SystemTitle
             Exit Function
         End If
 End Function
@@ -288,29 +289,29 @@ Private Sub cmdSave_Click()
     
     If intID = 0 Then
     If pfBlnAlreadyExist(False) Then Exit Sub
-        If MsgBox("Are you sure you want to add this Unit ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+        If MsgBox("Are you sure you want to add this question ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
             strSQL = ""
-            strSQL = strSQL & " Insert into Unit"
-            strSQL = strSQL & " (name)"
+            strSQL = strSQL & " Insert into userquestions"
+            strSQL = strSQL & " (Question)"
             strSQL = strSQL & " values ( " & pfstrQuote(txtName.Text) & ")"
             
             clsConnect.DBConnect.Execute (strSQL)
-            MsgBox "Unit added successfully.", vbInformation, SystemTitle
+            MsgBox "Question added successfully.", vbInformation, SystemTitle
             
             Call psubClear
             Call psubGetData
         End If
     Else
         If pfBlnAlreadyExist(True) Then Exit Sub
-        If MsgBox("Are you sure you want to update this Unit ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
+        If MsgBox("Are you sure you want to update this question ?", vbYesNo + vbQuestion, SystemTitle) = vbYes Then
         
             strSQL = ""
-            strSQL = strSQL & " Update Unit"
-            strSQL = strSQL & " SET name=" & pfstrQuote(txtName.Text)
+            strSQL = strSQL & " Update userquestions"
+            strSQL = strSQL & " SET Question=" & pfstrQuote(txtName.Text)
             strSQL = strSQL & " where id=" & intID
             
             clsConnect.DBConnect.Execute (strSQL)
-            MsgBox "Unit update successfully.", vbInformation, SystemTitle
+            MsgBox "Question update successfully.", vbInformation, SystemTitle
             
             Call psubClear
             Call psubGetData
@@ -326,7 +327,7 @@ End Function
 Private Sub Form_Load()
 Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT * FROM Unit"
+    strSQL = strSQL & "SELECT * FROM userquestions"
     
   Set objData = clsConnect.GetRecordSet(strSQL)
   Call psubLoadFlexGrid(objData)
@@ -339,7 +340,7 @@ Private Sub psubLoadFlexGrid(objData As Object)
     With MSFlexGrid1
         .Rows = 1
       For a = 0 To .Cols - 1
-                .TextMatrix(0, a) = Choose(a + 1, "ID", "Name")
+                .TextMatrix(0, a) = Choose(a + 1, "ID", "Question")
                 .Row = 0
                 .Col = a
                 .ColAlignment(a) = flexAlignCenterCenter
@@ -370,7 +371,7 @@ Private Sub MSFlexGrid1_DblClick()
 Dim objData As Object
      If MSFlexGrid1.Row <> 0 Then
         strSQL = ""
-        strSQL = strSQL & "SELECT * FROM Unit"
+        strSQL = strSQL & "SELECT * FROM userquestions"
         strSQL = strSQL & " Where ID = " & MSFlexGrid1.TextMatrix(MSFlexGrid1.Row, 0)
         Set objData = clsConnect.GetRecordSet(strSQL)
     
@@ -397,15 +398,14 @@ End Sub
 Private Sub psubGetData()
     Dim objData As Object
     strSQL = ""
-    strSQL = strSQL & "SELECT * from Unit"
+    strSQL = strSQL & "SELECT * from userquestions"
     If txtSearch.Text <> "" Then
-    strSQL = strSQL & " Where name like '%" & txtSearch.Text & "%'"
+    strSQL = strSQL & " Where Question like '%" & txtSearch.Text & "%'"
     End If
     
   Set objData = clsConnect.GetRecordSet(strSQL)
   Call psubLoadFlexGrid(objData)
 End Sub
-
 
 
 

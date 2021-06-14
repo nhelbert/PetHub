@@ -7,17 +7,17 @@ Begin VB.Form F_LogIn
    ClientHeight    =   3570
    ClientLeft      =   45
    ClientTop       =   390
-   ClientWidth     =   6765
+   ClientWidth     =   5910
    Icon            =   "F_LogIn.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   3570
-   ScaleWidth      =   6765
+   ScaleWidth      =   5910
    StartUpPosition =   2  'CenterScreen
    Begin OsenXPCntrl.OsenXPButton cmdLogIn 
       Height          =   495
-      Left            =   4560
+      Left            =   3338
       TabIndex        =   2
       Top             =   2655
       Width           =   1995
@@ -67,9 +67,9 @@ Begin VB.Form F_LogIn
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H80000010&
-      Height          =   525
+      Height          =   555
       IMEMode         =   3  'DISABLE
-      Left            =   1800
+      Left            =   578
       TabIndex        =   1
       Text            =   "Password"
       ToolTipText     =   "PASSWORD"
@@ -89,8 +89,8 @@ Begin VB.Form F_LogIn
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H80000010&
-      Height          =   525
-      Left            =   1800
+      Height          =   555
+      Left            =   578
       TabIndex        =   0
       Text            =   "Username"
       ToolTipText     =   "USERNAME"
@@ -99,7 +99,7 @@ Begin VB.Form F_LogIn
    End
    Begin OsenXPCntrl.OsenXPButton cmdForgotPassword 
       Height          =   500
-      Left            =   1800
+      Left            =   578
       TabIndex        =   3
       Top             =   2715
       Width           =   1995
@@ -150,16 +150,18 @@ Begin VB.Form F_LogIn
          Strikethrough   =   0   'False
       EndProperty
       Height          =   1050
-      Left            =   2250
+      Left            =   1028
       TabIndex        =   4
       Top             =   180
       Width           =   3975
    End
-   Begin VB.Line Line1 
-      X1              =   1620
-      X2              =   1620
-      Y1              =   180
-      Y2              =   3315
+   Begin VB.Image Image1 
+      Height          =   3570
+      Left            =   0
+      Picture         =   "F_LogIn.frx":1C3A
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   5910
    End
 End
 Attribute VB_Name = "F_LogIn"

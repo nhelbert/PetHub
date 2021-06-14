@@ -29,7 +29,7 @@ Begin VB.Form F_ForgetPassword
       Height          =   360
       Left            =   150
       TabIndex        =   7
-      Top             =   1095
+      Top             =   1080
       Width           =   5650
    End
    Begin VB.ComboBox cboQuestion2 
@@ -237,6 +237,14 @@ Begin VB.Form F_ForgetPassword
       Top             =   360
       Width           =   2265
    End
+   Begin VB.Image Image1 
+      Height          =   4965
+      Left            =   0
+      Picture         =   "F_ForgetPassword.frx":10E6
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   5910
+   End
 End
 Attribute VB_Name = "F_ForgetPassword"
 Attribute VB_GlobalNameSpace = False
@@ -247,6 +255,39 @@ Dim blnSetNewPassword As Boolean
 Dim objUserQuestions As Object
 Dim objUserExist As Object
 
+
+
+
+Private Sub cboQuestion1_DropDown()
+        cboQuestion1.Clear
+        With objUserQuestions
+        .MoveFirst
+        Do While Not .EOF
+        If .Fields(1).Value <> cboQuestion2.Text Then
+            cboQuestion1.AddItem .Fields(1).Value
+        End If
+            
+            .MoveNext
+        Loop
+    End With
+End Sub
+
+
+
+
+Private Sub cboQuestion2_DropDown()
+    cboQuestion2.Clear
+        With objUserQuestions
+        .MoveFirst
+        Do While Not .EOF
+        If .Fields(1).Value <> cboQuestion1.Text Then
+            cboQuestion2.AddItem .Fields(1).Value
+        End If
+            
+            .MoveNext
+        Loop
+    End With
+End Sub
 
 Private Sub Form_Load()
      strSQL = ""

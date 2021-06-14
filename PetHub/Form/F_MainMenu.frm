@@ -27,10 +27,10 @@ Begin VB.Form F_MainMenu
       TX              =   "GROOMING"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "MV Boli"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -66,10 +66,10 @@ Begin VB.Form F_MainMenu
       TX              =   "SALES"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "MV Boli"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -105,10 +105,10 @@ Begin VB.Form F_MainMenu
       TX              =   "STOCK MANAGEMENT"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "MV Boli"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -144,10 +144,10 @@ Begin VB.Form F_MainMenu
       TX              =   "REPORTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "MV Boli"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -183,10 +183,10 @@ Begin VB.Form F_MainMenu
       TX              =   "USER RIGHTS"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "MV Boli"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -213,7 +213,7 @@ Begin VB.Form F_MainMenu
       Height          =   495
       Left            =   7785
       TabIndex        =   5
-      Top             =   6885
+      Top             =   6930
       Width           =   1995
       _ExtentX        =   3519
       _ExtentY        =   873
@@ -261,10 +261,10 @@ Begin VB.Form F_MainMenu
       TX              =   "MAINTENANCE"
       ENAB            =   -1  'True
       BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "MV Boli"
+         Size            =   9
          Charset         =   0
-         Weight          =   400
+         Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -286,6 +286,14 @@ Begin VB.Form F_MainMenu
       HAND            =   0   'False
       CHECK           =   0   'False
       VALUE           =   0   'False
+   End
+   Begin VB.Image Image1 
+      Height          =   7575
+      Left            =   0
+      Picture         =   "F_MainMenu.frx":172A
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   9915
    End
 End
 Attribute VB_Name = "F_MainMenu"

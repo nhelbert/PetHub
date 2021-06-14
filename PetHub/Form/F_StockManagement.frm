@@ -351,6 +351,14 @@ Begin VB.Form F_StockManagement
       Top             =   180
       Width           =   2265
    End
+   Begin VB.Image Image1 
+      Height          =   7575
+      Left            =   0
+      Picture         =   "F_StockManagement.frx":169E
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   14910
+   End
 End
 Attribute VB_Name = "F_StockManagement"
 Attribute VB_GlobalNameSpace = False

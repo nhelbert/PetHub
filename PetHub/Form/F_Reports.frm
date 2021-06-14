@@ -26,7 +26,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   99745793
+      Format          =   327680001
       CurrentDate     =   44360
    End
    Begin VB.TextBox txtIncome 
@@ -161,7 +161,7 @@ Begin VB.Form F_Reports
       _ExtentX        =   3519
       _ExtentY        =   582
       _Version        =   393216
-      Format          =   99745793
+      Format          =   327745537
       CurrentDate     =   44360
    End
    Begin VB.Label Label5 
@@ -258,6 +258,14 @@ Begin VB.Form F_Reports
       TabIndex        =   1
       Top             =   6660
       Width           =   1500
+   End
+   Begin VB.Image Image1 
+      Height          =   7440
+      Left            =   0
+      Picture         =   "F_Reports.frx":1682
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   9780
    End
 End
 Attribute VB_Name = "F_Reports"

@@ -24,7 +24,7 @@ Begin VB.Form F_StockEditAdd
       _ExtentX        =   5874
       _ExtentY        =   661
       _Version        =   393216
-      Format          =   72548353
+      Format          =   157614081
       CurrentDate     =   44360
    End
    Begin VB.ComboBox cboProduct 
@@ -491,6 +491,14 @@ Begin VB.Form F_StockEditAdd
       TabIndex        =   11
       Top             =   720
       Width           =   2265
+   End
+   Begin VB.Image Image1 
+      Height          =   6090
+      Left            =   0
+      Picture         =   "F_StockEditAdd.frx":1102
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   5910
    End
 End
 Attribute VB_Name = "F_StockEditAdd"

@@ -46,6 +46,10 @@ Private Sub cmdProducts_Click()
     F_Products.Show vbModal
 End Sub
 
+Private Sub cmdQuestion_Click()
+    F_UserQuestions.Show vbModal
+End Sub
+
 Private Sub cmdUnit_Click()
     F_Unit.Show vbModal
 End Sub

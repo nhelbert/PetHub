@@ -215,6 +215,14 @@ Begin VB.Form F_Brand
       Top             =   180
       Width           =   2265
    End
+   Begin VB.Image Image1 
+      Height          =   6090
+      Left            =   0
+      Picture         =   "F_Brand.frx":111E
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   5910
+   End
 End
 Attribute VB_Name = "F_Brand"
 Attribute VB_GlobalNameSpace = False

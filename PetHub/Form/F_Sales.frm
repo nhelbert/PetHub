@@ -404,6 +404,14 @@ Begin VB.Form F_Sales
       Top             =   6660
       Width           =   3705
    End
+   Begin VB.Image Image1 
+      Height          =   7575
+      Left            =   0
+      Picture         =   "F_Sales.frx":1F78
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   12435
+   End
 End
 Attribute VB_Name = "F_Sales"
 Attribute VB_GlobalNameSpace = False

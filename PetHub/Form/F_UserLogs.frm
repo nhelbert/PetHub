@@ -64,6 +64,14 @@ Begin VB.Form F_UserLogs
       Top             =   135
       Width           =   2265
    End
+   Begin VB.Image Image1 
+      Height          =   5595
+      Left            =   0
+      Picture         =   "F_UserLogs.frx":10CA
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   5910
+   End
 End
 Attribute VB_Name = "F_UserLogs"
 Attribute VB_GlobalNameSpace = False

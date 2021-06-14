@@ -156,7 +156,7 @@ Begin VB.Form F_UserRights
       Height          =   6765
       Left            =   135
       TabIndex        =   8
-      Top             =   630
+      Top             =   675
       Width           =   9405
       _ExtentX        =   16589
       _ExtentY        =   11933
@@ -534,6 +534,14 @@ Begin VB.Form F_UserRights
       Top             =   135
       Width           =   2265
    End
+   Begin VB.Image Image1 
+      Height          =   7575
+      Left            =   0
+      Picture         =   "F_UserRights.frx":1156
+      Stretch         =   -1  'True
+      Top             =   0
+      Width           =   13425
+   End
 End
 Attribute VB_Name = "F_UserRights"
 Attribute VB_GlobalNameSpace = False
@@ -550,10 +558,40 @@ Private Sub cboQuestion1_Click()
     strAns1 = InputBox(cboQuestion1.Text, SystemTitle)
     If strAns1 = "" Then cboQuestion1.Text = ""
 End Sub
+
+Private Sub cboQuestion1_DropDown()
+        cboQuestion1.Clear
+        With objUserQuestions
+        .MoveFirst
+        Do While Not .EOF
+        If .Fields(1).Value <> cboQuestion2.Text And .Fields(1).Value <> cboQuestion3.Text Then
+            cboQuestion1.AddItem .Fields(1).Value
+        End If
+            
+            .MoveNext
+        Loop
+    End With
+End Sub
+
 Private Sub cboQuestion2_Click()
     strAns2 = InputBox(cboQuestion2.Text, SystemTitle)
      If strAns2 = "" Then cboQuestion2.Text = ""
 End Sub
+
+Private Sub cboQuestion2_DropDown()
+            cboQuestion2.Clear
+        With objUserQuestions
+        .MoveFirst
+        Do While Not .EOF
+        If .Fields(1).Value <> cboQuestion1.Text And .Fields(1).Value <> cboQuestion3.Text Then
+            cboQuestion2.AddItem .Fields(1).Value
+        End If
+            
+            .MoveNext
+        Loop
+    End With
+End Sub
+
 Private Sub cboQuestion3_Click()
     strAns3 = InputBox(cboQuestion3.Text, SystemTitle)
      If strAns3 = "" Then cboQuestion3.Text = ""
@@ -574,6 +612,21 @@ Private Function pfBlnAlreadyExist(blnUpdate As Boolean) As Boolean
             Exit Function
         End If
 End Function
+
+Private Sub cboQuestion3_DropDown()
+                cboQuestion3.Clear
+        With objUserQuestions
+        .MoveFirst
+        Do While Not .EOF
+        If .Fields(1).Value <> cboQuestion1.Text And .Fields(1).Value <> cboQuestion2.Text Then
+            cboQuestion3.AddItem .Fields(1).Value
+        End If
+            
+            .MoveNext
+        Loop
+    End With
+End Sub
+
 Private Sub cmdAdd_Click()
     If pfblnNotInput Then Exit Sub
     If pfBlnAlreadyExist(False) Then Exit Sub
