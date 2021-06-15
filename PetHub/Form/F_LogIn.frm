@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "ponga.ocx"
+Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "OsenControls.ocx"
 Begin VB.Form F_LogIn 
    AutoRedraw      =   -1  'True
    BorderStyle     =   1  'Fixed Single
@@ -43,8 +43,8 @@ Begin VB.Form F_LogIn
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_LogIn.frx":10CA
-      PICN            =   "F_LogIn.frx":10E6
+      MICON           =   "F_LogIn.frx":000C
+      PICN            =   "F_LogIn.frx":0028
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -125,8 +125,8 @@ Begin VB.Form F_LogIn
       FCOLO           =   16711680
       MCOL            =   12632256
       MPTR            =   0
-      MICON           =   "F_LogIn.frx":1682
-      PICN            =   "F_LogIn.frx":169E
+      MICON           =   "F_LogIn.frx":05C4
+      PICN            =   "F_LogIn.frx":05E0
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -158,7 +158,7 @@ Begin VB.Form F_LogIn
    Begin VB.Image Image1 
       Height          =   3570
       Left            =   0
-      Picture         =   "F_LogIn.frx":1C3A
+      Picture         =   "F_LogIn.frx":0B7C
       Stretch         =   -1  'True
       Top             =   0
       Width           =   5910

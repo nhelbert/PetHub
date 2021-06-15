@@ -283,7 +283,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   13321
+            LCID            =   1041
             SubFormatType   =   0
          EndProperty
       EndProperty
@@ -312,7 +312,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   13321
+            LCID            =   1041
             SubFormatType   =   0
          EndProperty
       EndProperty
@@ -341,7 +341,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   13321
+            LCID            =   1041
             SubFormatType   =   0
          EndProperty
       EndProperty
@@ -370,7 +370,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   13321
+            LCID            =   1041
             SubFormatType   =   0
          EndProperty
       EndProperty
@@ -399,7 +399,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
-            LCID            =   13321
+            LCID            =   1041
             SubFormatType   =   0
          EndProperty
       EndProperty
@@ -408,7 +408,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Reciept1
    BeginProperty Section2 {1C13A8E0-A0B6-11D0-848E-00A0C90DC8A9} 
       _Version        =   393216
       Name            =   "Section3"
-      Object.Height          =   2667
+      Object.Height          =   2095
       NumControls     =   8
       ItemType0       =   3
       BeginProperty Item0 {1C13A8E1-A0B6-11D0-848E-00A0C90DC8A9} 
