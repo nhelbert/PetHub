@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "OsenControls.ocx"
+Object = "{331187EF-B4B5-4368-9ACE-9E4E2FACD921}#1.0#0"; "ponga.ocx"
 Begin VB.Form F_LogIn 
    AutoRedraw      =   -1  'True
    BorderStyle     =   1  'Fixed Single
