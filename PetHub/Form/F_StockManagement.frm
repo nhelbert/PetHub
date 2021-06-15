@@ -48,7 +48,7 @@ Begin VB.Form F_StockManagement
       Left            =   8910
       TabIndex        =   1
       Top             =   180
-      Width           =   5895
+      Width           =   3420
    End
    Begin MSFlexGridLib.MSFlexGrid MSFlexGrid1 
       Height          =   6090
@@ -94,6 +94,45 @@ Begin VB.Form F_StockManagement
       MCOL            =   12632256
       MPTR            =   0
       MICON           =   "F_StockManagement.frx":10CA
+      UMCOL           =   -1  'True
+      SOFT            =   0   'False
+      PICPOS          =   0
+      NGREY           =   0   'False
+      FX              =   0
+      HAND            =   0   'False
+      CHECK           =   0   'False
+      VALUE           =   0   'False
+   End
+   Begin OsenXPCntrl.OsenXPButton cmdPrint 
+      Height          =   495
+      Left            =   12780
+      TabIndex        =   15
+      Top             =   90
+      Width           =   1995
+      _ExtentX        =   3519
+      _ExtentY        =   873
+      BTYPE           =   4
+      TX              =   "&Print"
+      ENAB            =   -1  'True
+      BeginProperty FONT {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      COLTYPE         =   1
+      FOCUSR          =   -1  'True
+      BCOL            =   16777215
+      BCOLO           =   16777215
+      FCOL            =   0
+      FCOLO           =   16711680
+      MCOL            =   12632256
+      MPTR            =   0
+      MICON           =   "F_StockManagement.frx":10E6
+      PICN            =   "F_StockManagement.frx":1102
       UMCOL           =   -1  'True
       SOFT            =   0   'False
       PICPOS          =   0
@@ -315,7 +354,7 @@ Begin VB.Form F_StockManagement
    Begin VB.Image Image1 
       Height          =   7575
       Left            =   0
-      Picture         =   "F_StockManagement.frx":10E6
+      Picture         =   "F_StockManagement.frx":169E
       Stretch         =   -1  'True
       Top             =   0
       Width           =   14910
@@ -326,6 +365,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 Private Sub psubLoadFlexGrid(objData As Object)
     Dim a As Integer
     With MSFlexGrid1
@@ -380,6 +420,38 @@ End Sub
 Private Sub cmdAdd_Click()
  F_StockEditAdd.blnAdd = True
     F_StockEditAdd.Show vbModal
+End Sub
+
+
+Private Sub cmdPrint_Click()
+
+    'DT_Stock.Orientation = rptOrientLandscape
+    strSQL = ""
+      strSQL = strSQL & " SELECT ItemId,Name,productname,Brand,ExDate,Max,Min,QTY,Unit,Price,"
+    strSQL = strSQL & " ActPrice,case when ExDate<=DATE_FORMAT(now(), '%Y-%m-%d') then 'Expired' when QTY<=Min then 'Low Stock' when QTY>Max then 'Over Stock' else 'OK' end as Remarks,EntDate FROM stocks"
+     strSQL = strSQL & " Where itemid is not null"
+    If txtSearch.Text <> "" Then
+            strSQL = strSQL & " and name like '%" & txtSearch.Text & "%'"
+    End If
+    Select Case cboStatus.Text
+    Case "Expired"
+        strSQL = strSQL & " and ExDate <= now()"
+    Case "On Stock"
+        strSQL = strSQL & " and qty > min and qty <=max and  ExDate > DATE_FORMAT(now(), '%Y-%m-%d')"
+    Case "Low Stock"
+        strSQL = strSQL & " and qty <= min"
+     Case "Over Stock"
+        strSQL = strSQL & " and qty > max"
+    End Select
+    
+   Set DT_Stock.DataSource = clsConnect.GetRecordSet(strSQL)
+
+    If MsgBox("Print Preview ?", vbQuestion + vbYesNo, SystemTitle) = vbYes Then
+      DT_Stock.Show vbModal
+    Else
+        DT_Stock.PrintReport False
+    End If
+    Set DT_Stock = Nothing
 End Sub
 
 Private Sub Form_Load()

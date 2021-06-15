@@ -512,7 +512,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "brand"
+         DataField       =   "Brand"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -541,7 +541,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "ExDate"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -570,7 +570,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "Max"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -599,7 +599,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "Min"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -628,7 +628,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "QTY"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -657,7 +657,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "Unit"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -686,7 +686,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "Price"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -715,7 +715,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "ActPrice"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
@@ -744,7 +744,7 @@ Begin {78E93846-85FD-11D0-8487-00A0C90DC8A9} DT_Stock
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DataField       =   "InvoiceNo"
+         DataField       =   "EntDate"
          Alignment       =   2
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
             Type            =   0
